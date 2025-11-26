@@ -123,9 +123,9 @@ function Navbar() {
 
       {isOpen && (
         <div className="md:hidden p-4 bg-white border-b space-y-4">
-          <a href="#how-it-works" className="block text-sm font-bold uppercase" onClick={() => setIsOpen(false)}>Cómo funciona</a>
-          <a href="#savings" className="block text-sm font-bold uppercase" onClick={() => setIsOpen(false)}>Ahorro</a>
-          <a href="#faq" className="block text-sm font-bold uppercase" onClick={() => setIsOpen(false)}>Preguntas</a>
+          <a href="#how-it-works" className="block text-sm font-bold uppercase text-black hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Cómo funciona</a>
+          <a href="#savings" className="block text-sm font-bold uppercase text-black hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Ahorro</a>
+          <a href="#faq" className="block text-sm font-bold uppercase text-black hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Preguntas</a>
           <Button className="w-full bg-[var(--color-brand-yellow)] text-primary font-bold uppercase border-2 border-white">
             Subir Factura
           </Button>
@@ -137,7 +137,7 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[var(--color-brand-blue)] pt-16 pb-24 md:pt-24 md:pb-32 text-white">
+    <section className="relative overflow-hidden bg-[var(--color-brand-blue)] pt-24 pb-12 md:pt-32 md:pb-32 text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 to-transparent opacity-50 blur-3xl pointer-events-none"></div>
 
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -147,20 +147,22 @@ function Hero() {
           transition={{ duration: 0.6 }}
           className="space-y-6 text-center lg:text-left"
         >
-          <div className="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-900/30 px-3 py-1 text-sm text-blue-100 backdrop-blur-sm uppercase tracking-wider font-semibold">
+          <div className="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-900/30 px-3 py-1 text-sm text-white backdrop-blur-sm uppercase tracking-wider font-semibold">
             <Zap className="mr-2 h-4 w-4 text-[var(--color-brand-yellow)]" />
             <span>Ahorro inteligente garantizado</span>
           </div>
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl font-sans leading-tight uppercase">
-            Sube tu factura y ahorra hasta <span className="text-[var(--color-brand-yellow)]">300€</span> al año
+            Sube tu factura y <br />
+            ahorra hasta <br />
+            <span className="text-[var(--color-brand-yellow)]">300€</span> al año
           </h1>
 
           <p className="text-lg text-white max-w-2xl mx-auto lg:mx-0 font-medium">
             Rápido, seguro y sin llamadas comerciales. Nosotros comparamos por ti, tú solo eliges y ahorras.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+          <div className="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
             <Button size="lg" className="bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold text-lg h-14 px-8 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300 animate-pulse-slow uppercase border-2 border-white">
               Subir mi factura ahora
             </Button>
@@ -199,7 +201,7 @@ function Hero() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0 }}
-              className="absolute top-10 -left-12 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg z-20 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
+              className="absolute top-0 -left-2 scale-90 md:scale-100 md:top-10 md:-left-12 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
             >
               <Users className="w-5 h-5 text-[var(--color-brand-yellow)]" />
               <span className="text-xs font-bold text-white whitespace-nowrap">Comunidad de Ahorro</span>
@@ -208,7 +210,7 @@ function Hero() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}
-              className="absolute top-20 -right-8 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg z-20 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
+              className="absolute top-8 -right-2 scale-90 md:scale-100 md:top-20 md:-right-8 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
             >
               <MessageCircle className="w-5 h-5 text-[var(--color-brand-yellow)]" />
               <span className="text-xs font-bold text-white whitespace-nowrap">Asesoramiento Real</span>
@@ -217,23 +219,33 @@ function Hero() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}
-              className="absolute bottom-20 -right-4 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg z-20 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
+              className="absolute bottom-24 -right-2 scale-90 md:scale-100 md:bottom-20 md:-right-4 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
             >
               <Phone className="w-5 h-5 text-[var(--color-brand-yellow)]" />
               <span className="text-xs font-bold text-white whitespace-nowrap">Sin Spam Telefónico</span>
             </motion.div>
-
+            {/* Speech Bubble */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1 }}
-              className="absolute -bottom-8 -left-8 bg-white/10 backdrop-blur-md border border-white/20 text-white p-5 rounded-3xl shadow-xl max-w-[240px] hidden sm:block z-20"
+              className="absolute bottom-10 -left-8 bg-white/10 backdrop-blur-md border border-white/20 text-white p-5 rounded-2xl shadow-xl max-w-[240px] hidden sm:block z-20"
             >
               <p className="text-sm font-bold italic leading-relaxed">
                 "¡Hola! Soy <span className="text-[var(--color-brand-yellow)] font-extrabold">Volt</span> ⚡ <br />
                 Tu amigo experto en energía. Sube tu factura y déjame conseguirte el mejor precio."
               </p>
             </motion.div>
+
+            {/* Mobile CTA Buttons (Below Character) */}
+            <div className="flex lg:hidden flex-col gap-4 justify-center items-center w-full mt-12 px-4">
+              <Button size="lg" className="w-full max-w-md bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold text-lg h-14 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300 animate-pulse-slow uppercase border-2 border-white">
+                Subir mi factura ahora
+              </Button>
+              <Button variant="outline" size="lg" className="w-full max-w-md border-white/20 text-white hover:bg-white/10 h-14 uppercase font-bold tracking-wide">
+                Ver cómo funciona
+              </Button>
+            </div>
           </div>
         </motion.div>
       </div>
