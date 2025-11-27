@@ -56,21 +56,21 @@
 :root {
   /* Main Palette */
   --background: 215 100% 98%; /* Very light blue/white */
-  --foreground: 215 100% 15%; /* Dark Blue Text */
+  --foreground: #1c2e4a; /* Dark Blue Text */
 
   --card: 0 0% 100%;
-  --card-foreground: 215 100% 15%;
+  --card-foreground: #1c2e4a;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 215 100% 15%;
+  --popover-foreground: #1c2e4a;
 
   /* Electric Blue Primary */
-  --primary: 215 100% 28%; /* #003B8F */
+  --primary: #2E3D9D;
   --primary-foreground: 0 0% 100%;
 
   /* Energy Yellow Secondary */
   --secondary: 47 100% 50%; /* #FFC800 */
-  --secondary-foreground: 215 100% 15%; /* Dark text on yellow */
+  --secondary-foreground: #1c2e4a; /* Dark text on yellow */
 
   --muted: 215 20% 90%;
   --muted-foreground: 215 20% 40%;
@@ -83,7 +83,7 @@
 
   --border: 215 20% 90%;
   --input: 215 20% 90%;
-  --ring: 215 100% 28%;
+  --ring: #2E3D9D;
 
   --radius: 0.5rem;
 }
@@ -96,7 +96,7 @@
   --card-foreground: 0 0% 98%;
   --popover: 215 50% 12%;
   --popover-foreground: 0 0% 98%;
-  --primary: 215 100% 28%;
+  --primary: #2E3D9D;
   --primary-foreground: 0 0% 100%;
   --secondary: 47 100% 50%;
   --secondary-foreground: 215 100% 15%;
@@ -108,7 +108,7 @@
   --destructive-foreground: 0 0% 98%;
   --border: 215 30% 20%;
   --input: 215 30% 20%;
-  --ring: 215 100% 28%;
+  --ring: #2E3D9D;
 }
 
 @layer base {

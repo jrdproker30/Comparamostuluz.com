@@ -23,16 +23,23 @@ import {
   Users,
   Gift,
   MessageCircle,
-  Phone
+  Phone,
+  Clock,
+  Wallet,
+  ChevronLeft,
+  ChevronRight,
+  Brain,
+  ChevronDown
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Assets
 import voltMain from "@assets/volt_hero_v2.png";
-import voltTools from "@assets/Gemini_Generated_Image_62tzie62tzie62tz_1763673302834.png";
+import voltTools from "@assets/volt_tools.png";
 import logoRound from "@assets/logo_ctl_clean.png";
-import logoText from "@assets/IMAGEN_CTL_1763673302835.jpg";
+import logoLoading from "@assets/logo sin fondo.png";
+import arcosImage from "@assets/arcos.png";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -72,46 +79,65 @@ function Preloader() {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--color-brand-blue)]"
     >
       <div className="relative">
-        <img src={logoRound} alt="Logo" className="w-24 h-24 rounded-full shadow-2xl mb-8" />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 1, 0.5]
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 1.5,
-            ease: "easeInOut"
-          }}
-          className="absolute -right-4 -top-4"
-        >
-          <Zap className="w-12 h-12 text-[var(--color-brand-yellow)] fill-[var(--color-brand-yellow)]" />
-        </motion.div>
+        <img src={logoLoading} alt="Logo" className="w-48 h-auto" />
       </div>
-      <h2 className="text-2xl font-bold text-white tracking-widest uppercase">Comparamos Tu Luz</h2>
     </motion.div>
   );
 }
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-brand-gradient text-white">
+    <nav
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 text-white ${isScrolled
+        ? "bg-[#002782]/60 backdrop-blur-md border-white/20 shadow-lg"
+        : "bg-brand-gradient border-transparent"
+        }`}
+    >
       <div className="container mx-auto px-4 flex h-24 items-center justify-between">
         <div className="flex items-center gap-2">
           <img
             src={logoRound}
             alt="CTL Logo"
-            className="h-20 w-auto transition-transform duration-300 hover:scale-110"
+            className="h-16 md:h-20 w-auto transition-transform duration-300 hover:scale-110"
           />
         </div>
 
-        <div className="hidden md:flex gap-6 items-center">
-          <a href="#how-it-works" className="text-sm font-bold uppercase hover:text-[var(--color-brand-yellow)] transition-colors">Cómo funciona</a>
-          <a href="#savings" className="text-sm font-bold uppercase hover:text-[var(--color-brand-yellow)] transition-colors">Ahorro</a>
-          <a href="#faq" className="text-sm font-bold uppercase hover:text-[var(--color-brand-yellow)] transition-colors">Preguntas</a>
-          <Button className="bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 hover:shadow-white/40 transition-all uppercase text-xs tracking-wide border-2 border-white">
+        <div className="hidden xl:flex items-center">
+          {[
+            { name: "Cómo funciona", href: "#how-it-works" },
+            { name: "Comparativa", href: "#comparison" },
+            { name: "Ahorro", href: "#savings" },
+            { name: "Colaboradores", href: "#collaborators" },
+            { name: "Confianza", href: "#trust" },
+            { name: "Incentivos", href: "#incentives" },
+            { name: "Conoce a Volt", href: "#meet-volt" },
+            { name: "Preguntas", href: "#faq" },
+          ].map((link, index, array) => (
+            <div key={link.name} className="flex items-center">
+              <a
+                href={link.href}
+                className="relative text-[10px] lg:text-xs font-bold uppercase hover:text-[var(--color-brand-yellow)] transition-colors px-3 lg:px-4 whitespace-nowrap group"
+              >
+                {link.name}
+                <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[var(--color-brand-yellow)] -translate-x-1/2 transition-all duration-500 ease-out group-hover:w-full"></span>
+              </a>
+              {index < array.length - 1 && (
+                <div className="h-4 w-px bg-white/50"></div>
+              )}
+            </div>
+          ))}
+          <Button className="ml-4 bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 hover:shadow-white/40 transition-all uppercase text-xs tracking-wide border-2 border-white whitespace-nowrap">
             Subir Factura
           </Button>
         </div>
@@ -123,9 +149,9 @@ function Navbar() {
 
       {isOpen && (
         <div className="md:hidden p-4 bg-white border-b space-y-4">
-          <a href="#how-it-works" className="block text-sm font-bold uppercase text-black hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Cómo funciona</a>
-          <a href="#savings" className="block text-sm font-bold uppercase text-black hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Ahorro</a>
-          <a href="#faq" className="block text-sm font-bold uppercase text-black hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Preguntas</a>
+          <a href="#how-it-works" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Cómo funciona</a>
+          <a href="#savings" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Ahorro</a>
+          <a href="#faq" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Preguntas</a>
           <Button className="w-full bg-[var(--color-brand-yellow)] text-primary font-bold uppercase border-2 border-white">
             Subir Factura
           </Button>
@@ -137,7 +163,7 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[var(--color-brand-blue)] pt-24 pb-12 md:pt-32 md:pb-32 text-white">
+    <section className="relative overflow-hidden bg-[var(--color-brand-blue)] pt-20 pb-12 md:pt-32 md:pb-32 text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 to-transparent opacity-50 blur-3xl pointer-events-none"></div>
 
       <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -152,7 +178,7 @@ function Hero() {
             <span>Ahorro inteligente garantizado</span>
           </div>
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl font-sans leading-tight uppercase">
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight font-sans leading-tight uppercase">
             Sube tu factura y <br />
             ahorra hasta <br />
             <span className="text-[var(--color-brand-yellow)]">300€</span> al año
@@ -187,21 +213,28 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative flex justify-center lg:justify-end"
+          className="hidden lg:flex relative justify-center lg:justify-center mt-8 lg:mt-0"
         >
-          <div className="relative w-full max-w-lg aspect-square flex items-center justify-center scale-125 origin-center">
+          <div className="relative w-full max-w-lg md:aspect-square flex items-center justify-center scale-100 origin-center -translate-y-12">
+            {/* Background Arcs (Image) */}
+            <img
+              src={arcosImage}
+              alt=""
+              className="absolute inset-0 w-full h-full z-0 pointer-events-none object-contain scale-125"
+            />
+
             <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
             <img
               src={voltMain}
               alt="Volt el experto"
-              className="relative z-10 object-contain w-full h-full drop-shadow-2xl mix-blend-screen"
+              className="relative z-10 object-contain w-full h-full drop-shadow-2xl scale-[1.4] md:scale-[1.4]"
             />
 
             {/* Floating Buttons */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0 }}
-              className="absolute top-0 -left-2 scale-90 md:scale-100 md:top-10 md:-left-12 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
+              className="hidden md:flex absolute top-0 left-0 md:top-10 md:-left-12 bg-[#002782]/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform items-center gap-2"
             >
               <Users className="w-5 h-5 text-[var(--color-brand-yellow)]" />
               <span className="text-xs font-bold text-white whitespace-nowrap">Comunidad de Ahorro</span>
@@ -210,7 +243,7 @@ function Hero() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}
-              className="absolute top-8 -right-2 scale-90 md:scale-100 md:top-20 md:-right-8 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
+              className="hidden md:flex absolute top-8 right-0 md:top-20 md:-right-8 bg-[#002782]/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform items-center gap-2"
             >
               <MessageCircle className="w-5 h-5 text-[var(--color-brand-yellow)]" />
               <span className="text-xs font-bold text-white whitespace-nowrap">Asesoramiento Real</span>
@@ -219,17 +252,18 @@ function Hero() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}
-              className="absolute bottom-24 -right-2 scale-90 md:scale-100 md:bottom-20 md:-right-4 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform flex items-center gap-2"
+              className="hidden md:flex absolute bottom-24 right-0 md:bottom-20 md:-right-4 bg-[#002782]/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform items-center gap-2"
             >
               <Phone className="w-5 h-5 text-[var(--color-brand-yellow)]" />
               <span className="text-xs font-bold text-white whitespace-nowrap">Sin Spam Telefónico</span>
             </motion.div>
+
             {/* Speech Bubble */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1 }}
-              className="absolute bottom-10 -left-8 bg-white/10 backdrop-blur-md border border-white/20 text-white p-5 rounded-2xl shadow-xl max-w-[240px] hidden sm:block z-20"
+              className="absolute bottom-10 -left-8 bg-[#002782]/60 backdrop-blur-md border border-white/20 text-white p-5 rounded-2xl shadow-xl max-w-[240px] hidden sm:block z-20"
             >
               <p className="text-sm font-bold italic leading-relaxed">
                 "¡Hola! Soy <span className="text-[var(--color-brand-yellow)] font-extrabold">Volt</span> ⚡ <br />
@@ -237,19 +271,32 @@ function Hero() {
               </p>
             </motion.div>
 
-            {/* Mobile CTA Buttons (Below Character) */}
-            <div className="flex lg:hidden flex-col gap-4 justify-center items-center w-full mt-12 px-4">
-              <Button size="lg" className="w-full max-w-md bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold text-lg h-14 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300 animate-pulse-slow uppercase border-2 border-white">
-                Subir mi factura ahora
-              </Button>
-              <Button variant="outline" size="lg" className="w-full max-w-md border-white/20 text-white hover:bg-white/10 h-14 uppercase font-bold tracking-wide">
-                Ver cómo funciona
-              </Button>
-            </div>
           </div>
         </motion.div>
-      </div>
-    </section>
+
+        {/* New Mobile-Only Side-by-Side Layout */}
+        <div className="flex lg:hidden flex-row items-end justify-between mt-10 w-full">
+          {/* Left: Big Dog */}
+          <div className="w-[45%] relative -ml-8 translate-y-8">
+            <img
+              src={voltMain}
+              alt="Volt el experto"
+              className="w-full object-contain scale-[1.65] origin-bottom-left drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Right: Small Buttons */}
+          <div className="w-[55%] flex flex-col gap-3 pb-4">
+            <Button size="sm" className="w-full bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold text-xs h-12 shadow-lg uppercase border border-white leading-tight whitespace-normal text-center px-1">
+              SUBIR MI FACTURA
+            </Button>
+            <Button variant="outline" size="sm" className="w-full border-white/20 text-white hover:bg-white/10 h-10 uppercase font-bold text-[10px] tracking-wide whitespace-normal text-center px-1">
+              VER CÓMO FUNCIONA
+            </Button>
+          </div>
+        </div>
+      </div >
+    </section >
   );
 }
 
@@ -273,7 +320,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-slate-50">
+    <section id="how-it-works" className="py-12 md:py-20 bg-slate-50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 uppercase tracking-tight">¿Cómo funciona Comparamos Tu Luz?</h2>
@@ -291,9 +338,9 @@ function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="relative bg-white p-8 rounded-2xl shadow-lg border border-blue-50 hover:border-blue-100 hover:shadow-xl transition-all"
+              className="relative bg-white p-8 rounded-2xl shadow-lg border border-blue-50 hover:border-blue-100 hover:shadow-xl transition-all group"
             >
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-900/20 relative z-10">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-900/20 relative z-10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
                 {step.icon}
                 <div className="absolute -top-2 -right-2 w-8 h-8 bg-[var(--color-brand-yellow)] rounded-full flex items-center justify-center text-primary font-bold text-sm border-2 border-white">
                   {index + 1}
@@ -320,7 +367,7 @@ function HowItWorks() {
 
 function Comparison() {
   return (
-    <section className="py-20 bg-white">
+    <section id="comparison" className="py-12 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
@@ -347,7 +394,7 @@ function Comparison() {
 
           <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 shadow-xl">
             <h3 className="text-xl font-bold text-primary mb-6 text-center uppercase">Comparativa</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
               <div className="space-y-4">
                 <div className="font-bold text-muted-foreground text-center mb-4 uppercase text-sm">Otros</div>
                 <div className="bg-red-50 p-4 rounded-lg text-sm text-red-800 border border-red-100 h-24 flex items-center justify-center text-center font-medium">
@@ -376,22 +423,60 @@ function Comparison() {
 }
 
 function Savings() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const testimonials = [
+    {
+      name: "María G., Madrid",
+      amount: "45€/mes",
+      text: "Pensaba que ya pagaba poco. Subí mi factura, en 5 minutos tenía una tarifa mejor y hoy pago mucho menos. Increíblemente fácil."
+    },
+    {
+      name: "Carlos R., Barcelona",
+      amount: "38€/mes",
+      text: "Nunca me fié de los comparadores, pero Volt me mostró el ahorro real con mi factura. Sin llamadas molestas, todo 100% online."
+    },
+    {
+      name: "Laura M., Valencia",
+      amount: "32€/mes",
+      text: "Genial que no pidan teléfono para acosar. Subes el PDF, ves tu ahorro y decides tú mismo. Así debería ser siempre."
+    },
+    {
+      name: "Antonio S., Sevilla",
+      amount: "50€/mes",
+      text: "Somos 4 y el aire dispara la factura. Gracias a Comparamos Tu Luz bajamos el gasto casi a la mitad este verano."
+    },
+    {
+      name: "Isabel P., Bilbao",
+      amount: "29€/mes",
+      text: "Sencillo, rápido y muy transparente. Me cambié de compañía al momento y sin papeleos complicados. Lo recomiendo a todo el mundo."
+    }
+  ];
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   return (
-    <section id="savings" className="py-20 bg-brand-gradient text-white relative overflow-hidden">
+    <section id="savings" className="py-12 md:py-20 bg-brand-gradient text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-tight">Hasta 300€ menos al mes</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-tight">Hasta al menos 30€ al mes</h2>
           <p className="text-blue-200 text-lg max-w-2xl mx-auto">
             Nuestros usuarios han optimizado sus facturas drásticamente.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <Card className="bg-white/10 backdrop-blur border-white/20 text-white p-8 text-center">
             <div className="text-5xl font-bold text-[var(--color-brand-yellow)] mb-2">300€</div>
-            <p className="text-blue-100 font-bold uppercase text-sm tracking-wider">Ahorro potencial mensual</p>
+            <p className="text-blue-100 font-bold uppercase text-sm tracking-wider">Ahorro potencial anual</p>
           </Card>
 
           <Card className="bg-white/10 backdrop-blur border-white/20 text-white p-8 text-center">
@@ -405,17 +490,59 @@ function Savings() {
           </Card>
         </div>
 
-        <div className="mt-16 max-w-3xl mx-auto bg-white text-primary p-8 rounded-2xl shadow-2xl">
-          <div className="flex flex-col md:flex-row gap-6 items-center">
-            <div className="w-20 h-20 bg-slate-200 rounded-full flex-shrink-0 overflow-hidden">
-              <Users className="w-full h-full p-4 text-slate-400" />
+        <div className="mt-16 max-w-4xl mx-auto">
+          <div className="relative bg-white text-primary p-8 rounded-2xl shadow-2xl">
+            <div className="flex items-center">
+              <button
+                onClick={prevTestimonial}
+                className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 p-2 bg-slate-200/50 md:bg-white/20 hover:bg-white/30 rounded-full text-primary md:text-white transition-colors z-10"
+                aria-label="Anterior testimonio"
+              >
+                <ChevronLeft className="w-6 h-6 md:w-10 md:h-10" />
+              </button>
+
+              <div className="flex-1 px-4 md:px-12">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col md:flex-row gap-6 items-center"
+                  >
+                    <div className="w-20 h-20 bg-slate-200 rounded-full flex-shrink-0 overflow-hidden flex items-center justify-center">
+                      <Users className="w-10 h-10 text-slate-400" />
+                    </div>
+                    <div>
+                      <p className="text-lg italic mb-4">
+                        "{testimonials[currentIndex].text}"
+                      </p>
+                      <div className="font-bold text-primary">— {testimonials[currentIndex].name}</div>
+                      <div className="text-sm text-muted-foreground font-medium">Ahorró {testimonials[currentIndex].amount}</div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <button
+                onClick={nextTestimonial}
+                className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 p-2 bg-slate-200/50 md:bg-white/20 hover:bg-white/30 rounded-full text-primary md:text-white transition-colors z-10"
+                aria-label="Siguiente testimonio"
+              >
+                <ChevronRight className="w-6 h-6 md:w-10 md:h-10" />
+              </button>
             </div>
-            <div>
-              <p className="text-lg italic mb-4">
-                "Pensaba que ya pagaba poco. Subí mi factura, en 5 minutos tenía una tarifa mejor y hoy pago mucho menos. Increíblemente fácil."
-              </p>
-              <div className="font-bold text-primary">— María G., Madrid</div>
-              <div className="text-sm text-muted-foreground font-medium">Ahorró 45€/mes</div>
+
+            <div className="flex justify-center gap-2 mt-6">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? 'bg-[var(--color-brand-blue)] w-6' : 'bg-slate-300'}`}
+                  aria-label={`Ir al testimonio ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -426,7 +553,7 @@ function Savings() {
 
 function Collaborators() {
   return (
-    <section className="py-20 bg-white">
+    <section id="collaborators" className="py-12 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 overflow-hidden relative">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-brand-yellow)] rounded-full filter blur-[80px] opacity-20"></div>
@@ -482,14 +609,14 @@ function Collaborators() {
 
 function Trust() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section id="trust" className="py-12 md:py-20 bg-slate-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-primary mb-4 uppercase tracking-tight">Confianza y Experiencia</h2>
           <p className="text-muted-foreground font-medium">Tu factura no es un experimento.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {[
             { title: "+10 Años", desc: "Experiencia en el sector energético" },
             { title: "< 2%", desc: "Índice de bajas anual" },
@@ -509,14 +636,14 @@ function Trust() {
 
 function FutureIncentives() {
   return (
-    <section className="py-20 bg-white border-t border-slate-100">
+    <section id="incentives" className="py-12 md:py-20 bg-white border-t border-slate-100">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-primary mb-4 uppercase tracking-tight">Ahorra hoy… y gana mañana</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-12">
           Además del ahorro directo, estamos preparando incentivos exclusivos para nuestra comunidad.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {[
             { icon: <Gift className="w-8 h-8" />, title: "Experiencias" },
             { icon: <Zap className="w-8 h-8" />, title: "Sorteos Luz Gratis" },
@@ -526,7 +653,7 @@ function FutureIncentives() {
               <div className="absolute top-3 right-3 bg-blue-100 text-[var(--color-brand-blue)] text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
                 Próximamente
               </div>
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-[var(--color-brand-blue)] group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-[var(--color-brand-yellow)] group-hover:scale-110 transition-transform">
                 {item.icon}
               </div>
               <h3 className="font-bold text-lg text-primary uppercase">{item.title}</h3>
@@ -539,31 +666,105 @@ function FutureIncentives() {
 }
 
 function MeetVolt() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const features = [
+    {
+      title: "Vigila las tarifas 24/7",
+      description: "Monitorizamos el mercado eléctrico en tiempo real para asegurar que siempre pagues el precio más justo, sin sorpresas."
+    },
+    {
+      title: "Te avisa de oportunidades de ahorro",
+      description: "Si detectamos una tarifa mejor que la tuya, te enviamos una alerta personalizada para que puedas cambiarte y ahorrar al instante."
+    },
+    {
+      title: "Te defiende ante las eléctricas",
+      description: "Nos encargamos de las gestiones pesadas. Si tienes una incidencia o un cobro indebido, Volt reclama por ti."
+    }
+  ];
+
   return (
-    <section className="py-20 bg-blue-50">
+    <section id="meet-volt" className="py-12 md:py-20 bg-blue-50">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-1/2 flex justify-center">
-            <img src={voltTools} alt="Volt con herramientas" className="w-full max-w-md drop-shadow-xl" />
+        <div className="flex flex-col md:flex-row items-center justify-center gap-16 max-w-6xl mx-auto">
+          <div className="md:w-5/12 flex justify-center md:justify-center relative">
+            <div className="relative scale-125">
+              {/* Dark Neon Gradient Background */}
+              <motion.div
+                animate={{ opacity: [0.4, 0.2, 0.4], scale: [0.75, 0.7, 0.75] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-blue-600/40 rounded-full blur-[60px] mix-blend-multiply"
+              ></motion.div>
+              <motion.div
+                animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.6, 0.55, 0.6] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute inset-0 bg-indigo-500/30 rounded-full blur-[40px] mix-blend-screen"
+              ></motion.div>
+
+              <img src={voltTools} alt="Volt con herramientas" className="w-full max-w-sm drop-shadow-2xl relative z-10 scale-[1.4] md:scale-[1.3]" />
+
+              {/* Floating Quality Buttons */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                className="absolute top-12 -left-8 bg-white shadow-xl border border-blue-100 px-4 py-2 rounded-full flex items-center gap-2 z-20"
+              >
+                <Brain className="w-4 h-4 text-[var(--color-brand-yellow)] fill-[var(--color-brand-yellow)]" />
+                <span className="text-sm font-bold text-primary">Experto</span>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}
+                className="absolute bottom-16 -right-8 bg-white shadow-xl border border-blue-100 px-4 py-2 rounded-full flex items-center gap-2 z-20"
+              >
+                <ShieldCheck className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                <span className="text-sm font-bold text-primary">Protector</span>
+              </motion.div>
+            </div>
           </div>
-          <div className="md:w-1/2">
+
+          <div className="md:w-6/12">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 uppercase tracking-tight">Conoce a Volt, tu experto en luz</h2>
             <p className="text-lg text-muted-foreground mb-6">
               Volt es el chihuahua que te acompaña en cada paso. Él representa nuestra forma de trabajar: cercano, inteligente y siempre atento a que no pagues de más.
             </p>
 
             <div className="space-y-4">
-              {[
-                "Vigila las tarifas 24/7",
-                "Te avisa de oportunidades de ahorro",
-                "Te defiende ante las eléctricas"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
-                  <div className="w-8 h-8 bg-[var(--color-brand-yellow)] rounded-full flex items-center justify-center shrink-0">
-                    <Zap className="w-4 h-4 text-primary" />
+              {features.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className={`bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer transition-all duration-300 ${openIndex === i ? 'ring-2 ring-[var(--color-brand-yellow)]' : 'hover:shadow-md'}`}
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  initial={false}
+                >
+                  <div className="flex items-center gap-3 p-4">
+                    <div className="w-8 h-8 bg-[var(--color-brand-yellow)] rounded-full flex items-center justify-center shrink-0">
+                      <Zap className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="font-bold text-primary flex-1">{item.title}</span>
+                    <motion.div
+                      animate={{ rotate: openIndex === i ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                    </motion.div>
                   </div>
-                  <span className="font-bold text-primary">{item}</span>
-                </div>
+                  <AnimatePresence>
+                    {openIndex === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-4 pb-4 pl-15 text-muted-foreground text-sm">
+                          {item.description}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -575,22 +776,43 @@ function MeetVolt() {
 
 function FAQ() {
   const faqs = [
-    { q: "¿Es seguro subir mi factura?", a: "Totalmente. Usamos encriptación de grado bancario y tus datos solo se usan para la comparativa." },
-    { q: "¿Cuánto tarda el análisis?", a: "Menos de 3 minutos. Nuestro sistema lee tu factura automáticamente." },
-    { q: "¿Tengo permanencia?", a: "Depende de la tarifa que elijas, pero siempre te avisaremos antes de contratar." },
-    { q: "¿Cobráis algo por el servicio?", a: "Para ti es 100% gratuito. Nosotros cobramos una comisión a las comercializadoras, no a ti." },
+    {
+      icon: <ShieldCheck className="w-5 h-5 text-[var(--color-brand-yellow)]" />,
+      q: "¿Es seguro subir mi factura?",
+      a: "Totalmente. Usamos encriptación de grado bancario y tus datos solo se usan para la comparativa."
+    },
+    {
+      icon: <Clock className="w-5 h-5 text-[var(--color-brand-yellow)]" />,
+      q: "¿Cuánto tarda el análisis?",
+      a: "Menos de 3 minutos. Nuestro sistema lee tu factura automáticamente."
+    },
+    {
+      icon: <FileText className="w-5 h-5 text-[var(--color-brand-yellow)]" />,
+      q: "¿Tengo permanencia?",
+      a: "Depende de la tarifa que elijas, pero siempre te avisaremos antes de contratar."
+    },
+    {
+      icon: <Wallet className="w-5 h-5 text-[var(--color-brand-yellow)]" />,
+      q: "¿Cobráis algo por el servicio?",
+      a: "Para ti es 100% gratuito. Nosotros cobramos una comisión a las comercializadoras, no a ti."
+    },
   ];
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-12 md:py-20 bg-white">
       <div className="container mx-auto px-4 max-w-3xl">
         <h2 className="text-3xl font-bold text-primary text-center mb-12 uppercase tracking-tight">Preguntas Frecuentes</h2>
 
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, i) => (
             <AccordionItem key={i} value={`item-${i}`}>
-              <AccordionTrigger className="text-left font-bold text-primary uppercase text-sm tracking-wide">{faq.q}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
+              <AccordionTrigger className="text-left font-bold text-primary uppercase text-sm tracking-wide">
+                <div className="flex items-center gap-3">
+                  {faq.icon}
+                  <span>{faq.q}</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pl-8">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>
@@ -603,7 +825,7 @@ function FAQ() {
 
 function Footer() {
   return (
-    <footer className="bg-[var(--color-brand-blue)] text-white py-12 border-t border-white/10">
+    <footer className="bg-[var(--color-brand-blue)] text-white py-8 md:py-12 border-t border-white/10">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-1 md:col-span-2 flex flex-col items-center text-center md:items-start md:text-left">

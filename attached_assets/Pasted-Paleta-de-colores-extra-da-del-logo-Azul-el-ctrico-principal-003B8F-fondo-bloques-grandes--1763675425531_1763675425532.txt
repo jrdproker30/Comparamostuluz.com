@@ -3,10 +3,11 @@ Paleta de colores (extraída del logo):
 Azul eléctrico principal: #003B8F (fondo, bloques grandes)
 
 Amarillo energía: #FFC800 (botones, iconos, elementos clave)
+Azul texto/oscuro: #2E3D9D (para textos sobre fondos claros)
 
 Blanco puro: #FFFFFF (tipografía y contrastes)
 
-Degradados suaves de azul oscuro a casi negro para dar profundidad.
+Degradados suaves de azul oscuro a #2E3D9D para dar profundidad.
 
 Tipografía: Sans serif moderna y legible tipo Poppins / Inter.
 
@@ -69,6 +70,18 @@ Elemento extra:
 Pequeña burbuja con Volt diciendo:
 
 “Yo me encargo de la comparación, tú de disfrutar el ahorro.”
+
+BARRA DE NAVEGACIÓN (NAV)
+
+Fondo: Transparente o azul oscuro al hacer scroll.
+
+Elementos:
+
+Logo: Comparamos Tu Luz a la izquierda.
+
+Enlaces: "Cómo funciona", "Colaboradores", "Preguntas Frecuentes" (scroll suave a las secciones).
+
+CTA en Nav (botón amarillo): "Te ayudamos por WhatsApp" (lleva a WhatsApp).
 
 SECCIÓN: CÓMO FUNCIONA (3 PASOS)
 
