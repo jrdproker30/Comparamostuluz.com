@@ -46,6 +46,8 @@ import testimonialCarlos from "@assets/testimonial_carlos.jpg";
 import testimonialLaura from "@assets/testimonial_laura.jpg";
 import testimonialAntonio from "@assets/testimonial_antonio.jpg";
 import testimonialIsabel from "@assets/testimonial_isabel.jpg";
+import familyHero from "@assets/family_hero.jpg";
+
 export default function Home() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -68,6 +70,7 @@ export default function Home() {
     </div>
   );
 }
+
 function Preloader() {
   return (
     <motion.div
@@ -98,6 +101,7 @@ function Preloader() {
     </motion.div>
   );
 }
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -144,7 +148,7 @@ function Navbar() {
               )}
             </div>
           ))}
-          <Button className="ml-4 bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 hover:shadow-white/40 transition-all uppercase text-xs tracking-wide border-2 border-white whitespace-nowrap">
+          <Button className="ml-4 bg-[var(--color-brand-yellow)] text-white hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 hover:shadow-white/40 transition-all uppercase text-xs tracking-wide border-2 border-white whitespace-nowrap">
             Subir Factura
           </Button>
         </div>
@@ -157,7 +161,7 @@ function Navbar() {
           <a href="#how-it-works" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Cómo funciona</a>
           <a href="#savings" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Ahorro</a>
           <a href="#faq" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Preguntas</a>
-          <Button className="w-full bg-[var(--color-brand-yellow)] text-primary font-bold uppercase border-2 border-white">
+          <Button className="w-full bg-[var(--color-brand-yellow)] text-white font-bold uppercase border-2 border-white">
             Subir Factura
           </Button>
         </div>
@@ -165,131 +169,139 @@ function Navbar() {
     </nav>
   );
 }
+
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[var(--color-brand-blue)] pt-20 pb-12 md:pt-32 md:pb-32 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 to-transparent opacity-50 blur-3xl pointer-events-none"></div>
-      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6 text-center lg:text-left"
-        >
-          <div className="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-900/30 px-3 py-1 text-sm text-white backdrop-blur-sm uppercase tracking-wider font-semibold">
-            <Zap className="mr-2 h-4 w-4 text-[var(--color-brand-yellow)]" />
-            <span>Ahorro inteligente garantizado</span>
-          </div>
-          {/* CORREGIDO: Se eliminó font-sans para que tome Montserrat globalmente */}
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight leading-tight uppercase">
-            Sube tu factura y <br />
-            ahorra hasta <br />
-            <span className="text-[var(--color-brand-yellow)]">300€</span> al año
-          </h1>
-          <p className="text-lg text-white max-w-2xl mx-auto lg:mx-0 font-medium">
-            Rápido, seguro y sin llamadas comerciales. Nosotros comparamos por ti, tú solo eliges y ahorras.
-          </p>
-          <div className="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-            <Button size="lg" className="bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold text-lg h-14 px-8 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300 animate-pulse-slow uppercase border-2 border-white">
-              Subir mi factura ahora
-            </Button>
-            <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 h-14 px-8 uppercase font-bold tracking-wide">
-              Ver cómo funciona
-            </Button>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-sm text-white pt-4 font-medium">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-6 w-6 text-[var(--color-brand-yellow)]" />
-              <span>ANÁLISIS AUTOMÁTICO Y SEGURO</span>
+    <section className="relative overflow-hidden bg-[#0C1A2B] min-h-[85vh] flex items-center text-white">
+      {/* Background Image (Right Side) */}
+      <div className="absolute top-0 right-0 w-full lg:w-[55%] h-full z-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A2B] via-[#0C1A2B]/90 to-transparent lg:via-[#0C1A2B]/40 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A2B] via-transparent to-transparent z-10 lg:hidden"></div>
+        <img
+          src={familyHero}
+          alt="Familia feliz ahorrando luz"
+          className="w-full h-full object-cover object-center"
+        />
+
+        {/* Floating Buttons (Now positioned over the image) */}
+        <div className="absolute inset-0 z-20 hidden lg:block pointer-events-none">
+          {/* Button 1: Family (Left) */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="absolute top-[35%] left-[10%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transform hover:scale-105 transition-transform duration-300"
+          >
+            <div className="bg-[var(--color-brand-yellow)] p-3 rounded-full text-primary shadow-lg">
+              <Users className="w-6 h-6" />
             </div>
-            <div className="flex items-center gap-2">
-              <TrendingDown className="h-6 w-6 text-[var(--color-brand-yellow)]" />
-              <span>PROCESO EN MENOS DE 3 MINUTOS</span>
+            <div>
+              <p className="text-xs text-gray-300 uppercase font-bold tracking-wider">Bienestar</p>
+              <p className="text-lg font-bold text-white leading-none">Para tu Familia</p>
             </div>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="hidden lg:flex relative justify-center lg:justify-center mt-8 lg:mt-0"
-        >
-          <div className="relative w-full max-w-lg md:aspect-square flex items-center justify-center scale-100 origin-center -translate-y-12">
-            {/* Background Arcs (Image) */}
-            <img
-              src={arcosImage}
-              alt=""
-              className="absolute inset-0 w-full h-full z-0 pointer-events-none object-contain scale-125"
-            />
-            <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-            <img
-              src={voltMain}
-              alt="Volt el experto"
-              className="relative z-10 object-contain w-full h-[80%] drop-shadow-2xl scale-[1.4] md:scale-[1.4]"
-            />
-            {/* Floating Buttons */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0 }}
-              className="hidden md:flex absolute top-0 left-0 md:top-10 md:-left-12 bg-[#002782]/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform items-center gap-2"
-            >
-              <Users className="w-5 h-5 text-[var(--color-brand-yellow)]" />
-              <span className="text-xs font-bold text-white whitespace-nowrap">Comunidad de Ahorro</span>
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}
-              className="hidden md:flex absolute top-8 right-0 md:top-20 md:-right-8 bg-[#002782]/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform items-center gap-2"
-            >
-              <MessageCircle className="w-5 h-5 text-[var(--color-brand-yellow)]" />
-              <span className="text-xs font-bold text-white whitespace-nowrap">Asesoramiento Real</span>
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}
-              className="hidden md:flex absolute bottom-24 right-0 md:bottom-20 md:-right-4 bg-[#002782]/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-lg shadow-white/10 z-30 cursor-pointer hover:scale-105 transition-transform items-center gap-2"
-            >
-              <Phone className="w-5 h-5 text-[var(--color-brand-yellow)]" />
-              <span className="text-xs font-bold text-white whitespace-nowrap">Sin Spam Telefónico</span>
-            </motion.div>
-            {/* Speech Bubble */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1 }}
-              className="absolute bottom-10 -left-8 bg-[#002782]/60 backdrop-blur-md border border-white/20 text-white p-5 rounded-2xl shadow-xl max-w-[240px] hidden sm:block z-20"
-            >
-              <p className="text-sm font-bold italic leading-relaxed">
-                "¡Hola! Soy <span className="text-[var(--color-brand-yellow)] font-extrabold">Volt</span> ⚡ <br />
-                Tu amigo experto en energía. Sube tu factura y déjame conseguirte el mejor precio."
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
-        {/* New Mobile-Only Side-by-Side Layout */}
-        <div className="flex lg:hidden flex-row items-end justify-between mt-10 w-full">
-          {/* Left: Big Dog */}
-          <div className="w-[45%] relative -ml-4 translate-y-4">
-            <img
-              src={voltMain}
-              alt="Volt el experto"
-              className="w-full object-contain scale-125 origin-bottom-left drop-shadow-2xl"
-            />
-          </div>
-          {/* Right: Small Buttons */}
-          <div className="w-[55%] flex flex-col gap-3 pb-4">
-            <Button size="sm" className="w-full bg-[var(--color-brand-yellow)] text-primary hover:bg-yellow-400 font-bold text-xs h-12 shadow-lg uppercase border border-white leading-tight whitespace-normal text-center px-1">
-              SUBIR MI FACTURA
-            </Button>
-            <Button variant="outline" size="sm" className="w-full border-white/20 text-white hover:bg-white/10 h-10 uppercase font-bold text-[10px] tracking-wide whitespace-normal text-center px-1">
-              VER CÓMO FUNCIONA
-            </Button>
-          </div>
+          </motion.div>
+
+          {/* Button 2: Light (Right) */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="absolute top-[55%] right-[5%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transform hover:scale-105 transition-transform duration-300"
+          >
+            <div className="bg-[var(--color-brand-yellow)] p-3 rounded-full text-primary shadow-lg">
+              <Zap className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-300 uppercase font-bold tracking-wider">Energía</p>
+              <p className="text-lg font-bold text-white leading-none">Luz al mejor precio</p>
+            </div>
+          </motion.div>
+
+          {/* Button 3: Savings/Protection (Bottom Center-ish) */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="absolute bottom-[10%] left-[35%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transform hover:scale-105 transition-transform duration-300"
+          >
+            <div className="bg-[var(--color-brand-yellow)] p-3 rounded-full text-primary shadow-lg">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-300 uppercase font-bold tracking-wider">Tranquilidad</p>
+              <p className="text-lg font-bold text-white leading-none">Hogar Protegido</p>
+            </div>
+          </motion.div>
         </div>
-      </div >
-    </section >
+      </div>
+
+      {/* Background Gradient & Effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-black/20 pointer-events-none z-0"></div>
+
+      {/* Corporate Background SVGs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <svg className="absolute top-0 left-0 w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <circle cx="0" cy="0" r="40" fill="none" stroke="var(--color-brand-yellow)" strokeWidth="0.5" />
+        </svg>
+        <div className="absolute top-20 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-20 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-20 grid lg:grid-cols-2 gap-12 items-center h-full">
+        {/* Left Column: Text */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-8 text-center lg:text-left pt-20 lg:pt-0"
+        >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            Ahorra en tu factura de luz sin <span className="text-[var(--color-brand-yellow)]">complicaciones</span>
+          </h1>
+
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+            Comparamos por ti las mejores tarifas del mercado y te mostramos la opción que realmente te ayuda a pagar menos cada mes.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+            <Button size="lg" className="bg-[var(--color-brand-yellow)] hover:bg-yellow-400 text-white font-bold text-lg h-14 px-8 rounded-xl shadow-lg shadow-yellow-500/20 transition-all duration-300">
+              Comparar tarifas ahora
+            </Button>
+            <Button variant="outline" size="lg" className="border-white/20 bg-transparent text-white hover:bg-white/10 h-14 px-8 font-bold rounded-xl">
+              Hablar con un asesor
+            </Button>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="pt-6 border-t border-white/10 mt-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm font-medium text-gray-300">
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle2 className="w-4 h-4 text-green-400" />
+                <span>100% gratis</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle2 className="w-4 h-4 text-green-400" />
+                <span>Comparativa imparcial</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle2 className="w-4 h-4 text-green-400" />
+                <span>Sin permanencia</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle2 className="w-4 h-4 text-green-400" />
+                <span>Seguro y transparente</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right Column: Empty now (Buttons moved to background image container) */}
+        <div className="hidden lg:block"></div>
+      </div>
+    </section>
   );
 }
+
 function HowItWorks() {
   const steps = [
     {
@@ -350,6 +362,7 @@ function HowItWorks() {
     </section>
   );
 }
+
 function Comparison() {
   return (
     <section id="comparison" className="py-12 md:py-20 bg-white">
@@ -407,6 +420,7 @@ function Comparison() {
     </section>
   );
 }
+
 function Savings() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const testimonials = [
@@ -519,10 +533,11 @@ function Savings() {
             </div>
           </div>
         </div>
-      </div >
-    </section >
+      </div>
+    </section>
   );
 }
+
 function MeetVolt() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const features = [
@@ -547,7 +562,7 @@ function MeetVolt() {
             o simplemente Texto Izquierda / Imagen Derecha en Desktop. 
         */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 max-w-6xl mx-auto">
-          
+
           {/* 1. BLOQUE DE TEXTO (Ahora va primero para estar a la izquierda en Desktop) */}
           <div className="w-full lg:w-6/12 order-2 lg:order-1">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 uppercase tracking-tight text-center lg:text-left">Conoce a Volt, tu experto en luz</h2>
@@ -632,6 +647,7 @@ function MeetVolt() {
     </section>
   );
 }
+
 function FAQ() {
   const faqs = [
     {
@@ -678,6 +694,7 @@ function FAQ() {
     </section>
   );
 }
+
 function Footer() {
   return (
     <footer className="bg-[var(--color-brand-blue)] text-white py-8 md:py-12 border-t border-white/10">
