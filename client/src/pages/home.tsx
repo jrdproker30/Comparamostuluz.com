@@ -42,7 +42,6 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// Assets
 import aboutUsTeam from "@assets/about_us_team.jpg";
 import voltMain from "@assets/volt_hero_v2.png";
 import voltTools from "@assets/volt_tools.png";
@@ -143,8 +142,11 @@ function Navbar() {
         </div>
         <div className="hidden xl:flex items-center">
           {[
+            { name: "Beneficios", href: "#features" },
             { name: "Cómo funciona", href: "#how-it-works" },
             { name: "Comparativa", href: "#comparison" },
+            { name: "Opiniones", href: "#testimonials" },
+            { name: "Sobre nosotros", href: "#about-us" },
             { name: "Conoce a Volt", href: "#meet-volt" },
             { name: "Preguntas", href: "#faq" },
           ].map((link, index, array) => (
@@ -171,7 +173,12 @@ function Navbar() {
       </div>
       {isOpen && (
         <div className="md:hidden p-4 bg-white border-b space-y-4">
+          <a href="#features" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Beneficios</a>
           <a href="#how-it-works" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Cómo funciona</a>
+          <a href="#comparison" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Comparativa</a>
+          <a href="#testimonials" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Opiniones</a>
+          <a href="#about-us" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Sobre nosotros</a>
+          <a href="#meet-volt" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Conoce a Volt</a>
           <a href="#faq" className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]" onClick={() => setIsOpen(false)}>Preguntas</a>
           <Button className="w-full bg-[var(--color-brand-yellow)] text-white font-bold uppercase border-2 border-white">
             Subir Factura
@@ -185,7 +192,6 @@ function Navbar() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0C1A2B] min-h-[85vh] flex items-center text-white">
-      {/* Background Image (Right Side) */}
       <div className="absolute top-0 right-0 w-full lg:w-[55%] h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A2B] via-[#0C1A2B]/90 to-transparent lg:via-[#0C1A2B]/40 z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A2B] via-transparent to-transparent z-10 lg:hidden"></div>
@@ -194,10 +200,7 @@ function Hero() {
           alt="Familia feliz ahorrando luz"
           className="w-full h-full object-cover object-center"
         />
-
-        {/* Floating Buttons (Now positioned over the image) */}
         <div className="absolute inset-0 z-20 hidden lg:block pointer-events-none">
-          {/* Button 1: Family (Left) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -212,8 +215,6 @@ function Hero() {
               <p className="text-lg font-bold text-white leading-none">Para tu Familia</p>
             </div>
           </motion.div>
-
-          {/* Button 2: Light (Right) */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -228,8 +229,6 @@ function Hero() {
               <p className="text-lg font-bold text-white leading-none">Luz al mejor precio</p>
             </div>
           </motion.div>
-
-          {/* Button 3: Savings/Protection (Bottom Center-ish) */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -246,11 +245,7 @@ function Hero() {
           </motion.div>
         </div>
       </div>
-
-      {/* Background Gradient & Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-black/20 pointer-events-none z-0"></div>
-
-      {/* Corporate Background SVGs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <svg className="absolute top-0 left-0 w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
           <circle cx="0" cy="0" r="40" fill="none" stroke="var(--color-brand-yellow)" strokeWidth="0.5" />
@@ -258,9 +253,7 @@ function Hero() {
         <div className="absolute top-20 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-20 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
       </div>
-
       <div className="container mx-auto px-4 relative z-20 grid lg:grid-cols-2 gap-12 items-center h-full">
-        {/* Left Column: Text */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -270,11 +263,9 @@ function Hero() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
             Ahorra en tu factura de luz sin <span className="text-[var(--color-brand-yellow)]">complicaciones</span>
           </h1>
-
           <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
             Comparamos por ti las mejores tarifas del mercado y te mostramos la opción que realmente te ayuda a pagar menos cada mes.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
             <Button size="lg" className="bg-[var(--color-brand-yellow)] hover:bg-yellow-400 text-white font-bold text-lg h-14 px-8 rounded-xl shadow-lg shadow-yellow-500/20 transition-all duration-300">
               Comparar tarifas ahora
@@ -285,8 +276,6 @@ function Hero() {
               </Button>
             </a>
           </div>
-
-          {/* Trust Badges */}
           <div className="pt-6 border-t border-white/10 mt-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm font-medium text-gray-300">
               <div className="flex items-center gap-2 justify-center lg:justify-start">
@@ -308,8 +297,6 @@ function Hero() {
             </div>
           </div>
         </motion.div>
-
-        {/* Right Column: Empty now (Buttons moved to background image container) */}
         <div className="hidden lg:block"></div>
       </div>
     </section>
@@ -339,9 +326,8 @@ function Features() {
       description: "En pocos minutos sabes cuánto puedes ahorrar cada mes."
     }
   ];
-
   return (
-    <section className="py-20 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10">
+    <section id="features" className="py-20 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">¿Por qué elegirnos?</h2>
@@ -349,7 +335,6 @@ function Features() {
             Descubre cómo te ayudamos a pagar menos por tu factura de luz, siempre con transparencia y sin complicaciones.
           </p>
         </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <motion.div
@@ -395,9 +380,7 @@ function HowItWorks() {
   ];
   return (
     <section id="how-it-works" className="py-24 md:py-32 bg-[#0F1B2D] border-t border-white/5 relative">
-      {/* Subtle top divider */}
       <div className="absolute top-0 left-0 w-full h-px bg-white/5"></div>
-
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">¿Cómo funciona?</h2>
@@ -405,7 +388,6 @@ function HowItWorks() {
             Nuestro proceso es rápido, fácil y pensado para ayudarte a pagar menos por tu electricidad sin complicaciones.
           </p>
         </div>
-
         <div className="grid md:grid-cols-3 gap-12 relative">
           {steps.map((step, index) => (
             <motion.div
@@ -523,7 +505,6 @@ function Testimonials() {
       image: testimonialIsabel
     }
   ];
-
   return (
     <section id="testimonials" className="py-20 bg-[#0F1B2D] border-t border-white/5 relative z-10">
       <div className="container mx-auto px-4">
@@ -533,9 +514,7 @@ function Testimonials() {
             Estas son opiniones reales de personas que ya están ahorrando con nuestras recomendaciones.
           </p>
         </div>
-
         <div className="flex flex-col gap-8">
-          {/* Top row: 3 cards */}
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.slice(0, 3).map((t, i) => (
               <motion.div
@@ -566,7 +545,6 @@ function Testimonials() {
               </motion.div>
             ))}
           </div>
-          {/* Bottom row: 2 cards, centered */}
           <div className="grid md:grid-cols-2 gap-8 md:w-2/3 mx-auto">
             {testimonials.slice(3, 5).map((t, i) => (
               <motion.div
@@ -608,7 +586,6 @@ function AboutUs() {
     <section id="about-us" className="py-20 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          {/* Text Column */}
           <div className="flex-1 space-y-8">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Sobre nosotros</h2>
@@ -616,7 +593,6 @@ function AboutUs() {
                 En ComparamosTuLuz ayudamos a miles de personas a pagar lo justo por su electricidad. Nuestro equipo analiza de forma imparcial las mejores tarifas del mercado para que cada hogar pueda ahorrar sin complicaciones, sin letra pequeña y con total transparencia.
               </p>
             </div>
-
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white/5 p-6 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
                 <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
@@ -637,7 +613,6 @@ function AboutUs() {
                 </p>
               </div>
             </div>
-
             <div>
               <h3 className="text-xl font-bold text-white mb-4">Nuestros valores</h3>
               <div className="grid sm:grid-cols-3 gap-4">
@@ -657,8 +632,6 @@ function AboutUs() {
               </div>
             </div>
           </div>
-
-          {/* Image Column */}
           <div className="flex-1 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
               <div className="absolute inset-0 bg-[var(--color-brand-yellow)]/10 blur-[80px] rounded-full"></div>
@@ -694,13 +667,7 @@ function MeetVolt() {
   return (
     <section id="meet-volt" className="py-12 md:py-20 bg-blue-50 overflow-hidden">
       <div className="container mx-auto px-4">
-        {/* CORREGIDO: Invertido el orden visual en Desktop si fuera necesario con flex-row-reverse, 
-            pero aquí cambiamos el orden HTML para que el Texto salga primero en móvil si se desea, 
-            o simplemente Texto Izquierda / Imagen Derecha en Desktop. 
-        */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 max-w-6xl mx-auto">
-
-          {/* 1. BLOQUE DE TEXTO (Ahora va primero para estar a la izquierda en Desktop) */}
           <div className="w-full lg:w-6/12 order-2 lg:order-1">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 uppercase tracking-tight text-center lg:text-left">Conoce a Volt, tu experto en luz</h2>
             <p className="text-lg text-muted-foreground mb-6 text-center lg:text-left">
@@ -744,11 +711,8 @@ function MeetVolt() {
               ))}
             </div>
           </div>
-          {/* 2. BLOQUE DE IMAGEN (Ahora va segundo para estar a la derecha en Desktop) */}
           <div className="w-full lg:w-5/12 flex justify-center relative mb-12 lg:mb-0 order-1 lg:order-2">
-            {/* Ajusté la escala y el ancho para móvil */}
             <div className="relative scale-100 lg:scale-125 w-3/4 max-w-xs lg:max-w-none mx-auto">
-              {/* Dark Neon Gradient Background */}
               <motion.div
                 animate={{ opacity: [0.4, 0.2, 0.4], scale: [0.75, 0.7, 0.75] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -760,7 +724,6 @@ function MeetVolt() {
                 className="absolute inset-0 bg-indigo-500/30 rounded-full blur-[40px] mix-blend-screen"
               ></motion.div>
               <img src={voltTools} alt="Volt con herramientas" className="w-full drop-shadow-2xl relative z-10" />
-              {/* Floating Quality Buttons */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
@@ -816,7 +779,6 @@ function FAQ() {
       a: "No. Nosotros nos encargamos de todo. Tú solo debes elegir la opción que mejor se adapte a ti."
     }
   ];
-
   return (
     <section id="faq" className="py-20 bg-[#0F1B2D] border-t border-white/5">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -826,7 +788,6 @@ function FAQ() {
             Resolvemos las dudas más comunes para ayudarte a entender cómo funciona nuestra plataforma y cómo puedes empezar a ahorrar.
           </p>
         </div>
-
         <Accordion type="single" collapsible className="w-full space-y-4">
           {faqs.map((faq, i) => (
             <AccordionItem key={i} value={`item-${i}`} className="border border-white/5 rounded-xl bg-[#102033] px-6">
@@ -847,27 +808,21 @@ function FAQ() {
 function CTA() {
   return (
     <section className="py-20 bg-[#0C1A2B] relative overflow-hidden border-t border-white/5">
-      {/* Background Elements */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
       <div className="container mx-auto px-4 relative z-10 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Empieza hoy a pagar menos por tu factura de luz
           </h2>
-
           <p className="text-lg md:text-xl text-[#C6CFDA] max-w-2xl mx-auto">
             Obtén un análisis imparcial y descubre cuánto puedes ahorrar en menos de 5 minutos.
           </p>
-
           <div className="pt-4 pb-8">
             <Button size="lg" className="bg-[var(--color-brand-yellow)] hover:bg-[#E4B700] text-[#0C1A2B] font-bold text-lg h-16 px-10 rounded-full shadow-[0_0_20px_rgba(255,204,0,0.3)] hover:shadow-[0_0_30px_rgba(255,204,0,0.5)] transition-all transform hover:scale-105">
               Comparar tarifas ahora
             </Button>
           </div>
-
-          {/* Benefits List */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm font-medium text-gray-300">
             {[
               "100% gratis",
@@ -882,8 +837,6 @@ function CTA() {
             ))}
           </div>
         </div>
-
-        {/* Subtle Mascot Guiño */}
         <div className="absolute bottom-0 right-4 md:right-10 opacity-20 hover:opacity-100 transition-opacity duration-500 hidden md:block">
           <img src={voltMain} alt="Volt" className="w-24 h-auto transform translate-y-4" />
         </div>
@@ -897,8 +850,6 @@ function Footer() {
     <footer className="bg-[#0C1A2B] text-[#C6CFDA] py-16 border-t border-white/5 font-sans">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
-          {/* Columna 1 — Marca */}
           <div className="space-y-6">
             <img
               src={logoRound}
@@ -909,8 +860,6 @@ function Footer() {
               Tu plataforma para comparar tarifas de electricidad de manera transparente y ahorrar en tu factura cada mes.
             </p>
           </div>
-
-          {/* Columna 2 — Navegación */}
           <div>
             <h4 className="text-white font-bold mb-6 text-lg">Navegación</h4>
             <ul className="space-y-4 text-sm">
@@ -921,8 +870,6 @@ function Footer() {
               <li><a href="#about-us" className="hover:text-[var(--color-brand-yellow)] transition-colors">Sobre nosotros</a></li>
             </ul>
           </div>
-
-          {/* Columna 3 — Recursos */}
           <div>
             <h4 className="text-white font-bold mb-6 text-lg">Recursos</h4>
             <ul className="space-y-4 text-sm">
@@ -933,8 +880,6 @@ function Footer() {
               <li><a href="#" className="hover:text-[var(--color-brand-yellow)] transition-colors">Términos y condiciones</a></li>
             </ul>
           </div>
-
-          {/* Columna 4 — Contacto */}
           <div>
             <h4 className="text-white font-bold mb-6 text-lg">Contacto</h4>
             <ul className="space-y-4 text-sm">
@@ -953,17 +898,13 @@ function Footer() {
             </ul>
           </div>
         </div>
-
-        {/* Fila Inferior */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs md:text-sm">
           <div className="text-center md:text-left">
             <p>&copy; 2025 ComparamosTuLuz. Todos los derechos reservados.</p>
           </div>
-
           <div className="hidden md:block text-white/40 font-medium tracking-wide">
             Transparencia · Seguridad · Ahorro
           </div>
-
           <div className="flex justify-center md:justify-end">
             <img
               src={logoUE}
