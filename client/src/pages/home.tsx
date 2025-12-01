@@ -57,6 +57,7 @@ import testimonialAntonio from "@assets/testimonial_antonio.jpg";
 import testimonialIsabel from "@assets/testimonial_isabel.jpg";
 import familyHero from "@assets/family_hero.jpg";
 import logoUE from "@assets/logo-compo-ue-color.png";
+import logoFooter from "@assets/logo_footer.png";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -852,7 +853,7 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <img
-              src={logoRound}
+              src={logoFooter}
               alt="ComparamosTuLuz"
               className="h-12 w-auto"
             />
