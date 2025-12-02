@@ -67,6 +67,7 @@ import logoUE from "@assets/logo-compo-ue-color.png";
 import logoFooter from "@assets/logo_footer.webp";
 import voltBoton from "@assets/volt-boton.webp";
 import voltFAQ from "@assets/volt-intriga.webp";
+import familyHero2 from "@assets/family_hero2.jpg";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -248,11 +249,11 @@ function Hero() {
   //  const [, setLocation] = useLocation();
   return (
     <section className="relative overflow-hidden bg-[#0C1A2B] min-h-[85vh] flex items-center text-white">
-      <div className="absolute top-24 right-0 w-full lg:w-[40%] h-[calc(100%-6rem)] z-0">
+      <div className="absolute top-24 right-0 w-full lg:w-[55%] h-[calc(100%-6rem)] z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A2B] via-[#0C1A2B]/90 to-transparent lg:via-[#0C1A2B]/40 z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A2B] via-transparent to-transparent z-10 lg:hidden"></div>
         <img
-          src={familyHero}
+          src={familyHero2}
           alt="Familia feliz ahorrando luz"
           className="w-full h-full object-cover object-center"
         />
