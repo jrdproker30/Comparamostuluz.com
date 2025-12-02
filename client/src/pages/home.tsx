@@ -657,7 +657,7 @@ function Comparison() {
                   Ofertas confusas
                 </div>
                 <div className="p-4 text-center border-b border-gray-100 bg-blue-50/30 text-[#1c2e4a] font-semibold text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
-                   Información clara y directa
+                  Información clara y directa
                 </div>
 
                 {/* Row 3 */}
@@ -947,23 +947,26 @@ function MeetVolt() {
     {
       id: 0,
       label: "Ágil y Seguro",
-      title: "🔐 Protegido desde el inicio",
+      title: "Protegido desde el inicio",
       content:
         "Volt cuida tu información desde el primer instante para que todo sea seguro y sin complicaciones.",
+      icon: ShieldCheck,
     },
     {
       id: 1,
       label: "Claridad real",
-      title: "🔎 Claridad real",
+      title: "Claridad real",
       content:
         "Analiza tu factura tal cual es, sin letra pequeña ni tecnicismos innecesarios.",
+      icon: Search,
     },
     {
       id: 2,
       label: "A tu lado en cada decisión",
-      title: "💬 Te guía paso a paso",
+      title: "Te guía paso a paso",
       content:
         "Volt te explica lo esencial para que elijas la mejor tarifa con confianza.",
+      icon: MessageCircle,
     },
   ];
 
@@ -1011,42 +1014,55 @@ function MeetVolt() {
               Volt está contigo en cada paso importante, haciendo que todo sea más claro y fácil de entender. Su misión es darte seguridad y ayudarte a comprender tu factura sin enredos.
             </p>
 
-            {/* TABS NAVIGATION */}
-            <div className="flex flex-wrap gap-2 mb-6 justify-center lg:justify-start ">
+            {/* ACCORDION CARDS */}
+            <div className="flex flex-col gap-4">
               {tabs.map((tab) => (
-                <button
+                <motion.div
                   key={tab.id}
+                  className={`bg-white rounded-xl border transition-all duration-300 overflow-hidden cursor-pointer ${activeTab === tab.id
+                    ? "border-[var(--color-brand-yellow)] shadow-[0_0_12px_rgba(255,255,255,0.08)]"
+                    : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  style={{
+                    transform: activeTab === tab.id ? "translateY(-2px)" : "none",
+                  }}
                   onMouseEnter={() => setActiveTab(tab.id)}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 ${activeTab === tab.id
-                    ? "bg-[var(--color-brand-yellow)] text-white shadow-md transform scale-105"
-                    : "bg-white text-[#1c2e4a] border  border-gray-200 hover:bg-gray-50"
-                    }`}
                 >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
-            {/* TABS CONTENT */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 min-h-[160px] flex items-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="w-full"
-                >
-                  <h3 className="text-xl font-bold text-[#1c2e4a] mb-3 flex items-center gap-2">
-                    {tabs[activeTab].title}
-                  </h3>
-                  <p className="text-[#1c2e4a] text-lg leading-relaxed">
-                    {tabs[activeTab].content}
-                  </p>
+                  <div className="p-4 flex items-start gap-4">
+                    <div
+                      className={`p-2 rounded-lg transition-colors duration-300 ${activeTab === tab.id
+                        ? "bg-[var(--color-brand-yellow)] text-white"
+                        : "bg-gray-100 text-gray-500"
+                        }`}
+                    >
+                      <tab.icon className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1">
+                      <h3
+                        className={`text-lg font-bold mb-1 transition-colors duration-300 ${activeTab === tab.id ? "text-[#1c2e4a]" : "text-gray-600"
+                          }`}
+                      >
+                        {tab.title}
+                      </h3>
+                      <AnimatePresence>
+                        {activeTab === tab.id && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                          >
+                            <p className="text-[#1c2e4a] text-base leading-relaxed pt-1">
+                              {tab.content}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
                 </motion.div>
-              </AnimatePresence>
+              ))}
             </div>
           </div>
         </div>
@@ -1132,50 +1148,50 @@ function FAQ() {
             ))}
           </Accordion>
           {/* Columna Derecha: Volt */}
-       <div className="flex justify-center lg:justify-start relative pt-10 mb-20">
-  <div className="relative w-full max-w-xs scale-90"> 
-    {/* Fondo difuminado detrás */}
-    <motion.div
-      animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.95, 1, 0.95] }}
-      transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-      className="absolute inset-0 bg-blue-500/20 rounded-full blur-[50px]"
-    ></motion.div>
-    {/* SOMBRA */}
-    <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-[90%] h-8 bg-black/60 blur-xl rounded-[100%] z-0"></div>
-    {/* BURBUJA DE PENSAMIENTO (CON DELAY DE 1.5s) */}
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8, y: 10 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: false, margin: "-50px" }}
-      transition={{ type: "spring", duration: 0.6, delay: 0.8 }} 
-      className="absolute -top-32 -right-16 z-50" 
-    >
-      <div className="relative filter drop-shadow-xl top-14 right-22">
-        {/* Forma de Nube SVG */}
-        <svg width="170" height="120" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M40 70C25 70 15 60 15 45C15 30 25 20 40 20C42 20 44 20.5 46 21.5C50 10 60 5 75 5C90 5 100 15 105 25C115 25 125 35 125 50C125 65 115 75 100 75H40Z" fill="white"/>
-        </svg>
-        {/* Icono de Interrogación Azul */}
-        <div className="absolute inset-0 flex items-center justify-center pb-8 pr-4 top-4 left-4">
-           <HelpCircle className="w-16 h-16 text-[#002782] stroke-[2.5]" />
-        </div>
-        {/* Círculos de pensamiento */}
-        <div className="absolute bottom-6 left-12 w-5 h-5 bg-white rounded-full"></div>
-        <div className="absolute -bottom-1 left-8 w-3 h-3 bg-white rounded-full"></div>
-      </div>
-    </motion.div>
-    {/* Imagen de Volt */}
-    <img
-      src={voltFAQ}
-      alt="Volt respondiendo dudas"
-      className="w-full h-auto relative z-10 drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
-    />
-  </div>
-</div>
+          <div className="flex justify-center lg:justify-start relative pt-10 mb-20">
+            <div className="relative w-full max-w-xs scale-90">
+              {/* Fondo difuminado detrás */}
+              <motion.div
+                animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.95, 1, 0.95] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-blue-500/20 rounded-full blur-[50px]"
+              ></motion.div>
+              {/* SOMBRA */}
+              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-[90%] h-8 bg-black/60 blur-xl rounded-[100%] z-0"></div>
+              {/* BURBUJA DE PENSAMIENTO (CON DELAY DE 1.5s) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ type: "spring", duration: 0.6, delay: 0.8 }}
+                className="absolute -top-32 -right-16 z-50"
+              >
+                <div className="relative filter drop-shadow-xl top-14 right-22">
+                  {/* Forma de Nube SVG */}
+                  <svg width="170" height="120" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40 70C25 70 15 60 15 45C15 30 25 20 40 20C42 20 44 20.5 46 21.5C50 10 60 5 75 5C90 5 100 15 105 25C115 25 125 35 125 50C125 65 115 75 100 75H40Z" fill="white" />
+                  </svg>
+                  {/* Icono de Interrogación Azul */}
+                  <div className="absolute inset-0 flex items-center justify-center pb-8 pr-4 top-4 left-4">
+                    <HelpCircle className="w-16 h-16 text-[#002782] stroke-[2.5]" />
+                  </div>
+                  {/* Círculos de pensamiento */}
+                  <div className="absolute bottom-6 left-12 w-5 h-5 bg-white rounded-full"></div>
+                  <div className="absolute -bottom-1 left-8 w-3 h-3 bg-white rounded-full"></div>
+                </div>
+              </motion.div>
+              {/* Imagen de Volt */}
+              <img
+                src={voltFAQ}
+                alt="Volt respondiendo dudas"
+                className="w-full h-auto relative z-10 drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1486,8 +1502,9 @@ function Footer() {
         </div>
 
         {/* Bottom Bar con Logo UE */}
+        {/* Bottom Bar con Logo UE */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[#64748B]">
+          <p className="text-sm text-[#C6CFDA">
             © 2025 ComparamosTuLuz. Todos los derechos reservados.
           </p>
           <img
