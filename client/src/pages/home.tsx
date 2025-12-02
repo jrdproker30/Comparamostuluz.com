@@ -66,6 +66,7 @@ import familyHero from "@assets/family_hero.svg";
 import logoUE from "@assets/logo-compo-ue-color.png";
 import logoFooter from "@assets/logo_footer.webp";
 import voltBoton from "@assets/volt-boton.webp";
+import voltFAQ from "@assets/volt-intriga.webp";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -633,11 +634,11 @@ function Comparison() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
               <div className="grid grid-cols-2">
                 {/* Header Otros */}
-                <div className="bg-red-50/50 p-4 text-center border-b border-gray-200">
-                  <span className="font-bold text-[#E25555] uppercase tracking-wider text-sm">Otros</span>
+                <div className="bg-gray-700 p-4 text-center border-b border-gray-200">
+                  <span className="font-bold text-white uppercase tracking-wider text-sm">Otros</span>
                 </div>
                 {/* Header Nosotros */}
-                <div className="bg-[#1c2e4a] p-4 text-center border-b border-[#1c2e4a] relative">
+                <div className="bg-[#002782] p-4 text-center border-b border-[#1c2e4a] relative">
                   <div className="flex items-center justify-center gap-2">
                     <span className="font-bold text-white uppercase tracking-wider text-sm">Nosotros</span>
                   </div>
@@ -1135,24 +1136,48 @@ function FAQ() {
             ))}
           </Accordion>
           {/* Columna Derecha: Volt */}
-          <div className="flex justify-center">
-            <div className="relative w-full max-w-sm">
-              <motion.div
-                animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.95, 1, 0.95] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute inset-0 bg-blue-500/20 rounded-full blur-[50px]"
-              ></motion.div>
-              <img
-                src={voltBoton}
-                alt="Volt respondiendo dudas"
-                className="w-full h-auto relative z-10 drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          </div>
+       <div className="flex justify-center">
+  <div className="relative w-full max-w-xs scale-90"> 
+    <motion.div
+      animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.95, 1, 0.95] }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className="absolute inset-0 bg-blue-500/20 rounded-full blur-[50px]"
+    ></motion.div>
+    {/* 1. Icono Arriba Derecha (Corregido: color amarillo forzado y posición) */}
+    <motion.div
+      animate={{ y: [0, -15, 0], rotate: [0, -5, 5, 0] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute -top-6 right-0 z-50 text-yellow-400"
+    >
+      <HelpCircle className="w-24 h-24 drop-shadow-lg filter brightness-110" />
+    </motion.div>
+    {/* 2. Icono Medio Izquierda */}
+    <motion.div
+      animate={{ y: [0, -10, 0], rotate: [0, 5, -5, 0] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      className="absolute top-24 -left-10 z-50 text-yellow-400"
+    >
+      <HelpCircle className="w-20 h-20 drop-shadow-lg filter brightness-110" />
+    </motion.div>
+    {/* 3. Icono Abajo Derecha */}
+    <motion.div
+      animate={{ y: [0, -12, 0], rotate: [0, -10, 10, 0] }}
+      transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      className="absolute bottom-20 -right-8 z-50 text-yellow-400"
+    >
+      <HelpCircle className="w-20 h-20 drop-shadow-lg filter brightness-110" />
+    </motion.div>
+    <img
+      src={voltFAQ}
+      alt="Volt respondiendo dudas"
+      className="w-full h-auto relative z-10 drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+    />
+  </div>
+</div>
         </div>
       </div>
     </section>
