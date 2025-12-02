@@ -137,10 +137,7 @@ function Navbar() {
   }, []);
   return (
     <nav
-      className={`fixed top-0 left-0 z-50 w-full border-b transition-all duration-300 text-white ${isScrolled
-        ? "bg-[#002782]/90 backdrop-blur-md border-white/20 shadow-lg"
-        : "bg-brand-gradient border-transparent"
-        }`}
+      className="fixed top-0 left-0 z-50 w-full border-b border-white/5 transition-all duration-300 text-[#C6CFDA] bg-[#0F1B2D]"
     >
       <div className="container mx-auto px-4 flex h-24 items-center justify-between">
         <div className="flex items-center gap-2">
@@ -173,7 +170,7 @@ function Navbar() {
               )}
             </div>
           ))}
-          <Button className="ml-4 bg-[var(--color-brand-yellow)] text-white hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 hover:shadow-white/40 transition-all uppercase text-xs tracking-wide border-2 [text-shadow:1px_1px_2px_black] border-white whitespace-nowrap transition-all transform hover:scale-105">
+          <Button className="ml-4 bg-[var(--color-brand-yellow)] text-white hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 transition-all uppercase text-xs tracking-wide border-2 [text-shadow:1px_1px_2px_black] border-white whitespace-nowrap transition-all transform hover:scale-105">
             Subir Factura
           </Button>
         </div>
@@ -186,52 +183,52 @@ function Navbar() {
         </button>
       </div>
       {isOpen && (
-        <div className="md:hidden p-4 bg-white border-b space-y-4">
+        <div className="md:hidden p-4 bg-[#0F1B2D] border-b border-white/5 space-y-4">
           <a
             href="#features"
-            className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
+            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
             Beneficios
           </a>
           <a
             href="#how-it-works"
-            className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
+            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
             Cómo funciona
           </a>
           <a
             href="#comparison"
-            className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
+            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
             Comparativa
           </a>
           <a
             href="#testimonials"
-            className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
+            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
             Opiniones
           </a>
           <a
             href="#about-us"
-            className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
+            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
             Sobre nosotros
           </a>
           <a
             href="#meet-volt"
-            className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
+            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
             Conoce a Volt
           </a>
           <a
             href="#faq"
-            className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
+            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
             Preguntas
@@ -579,7 +576,8 @@ function HowItWorks() {
 function Comparison() {
   return (
     <section id="comparison" className="py-20 bg-blue-50 relative overflow-hidden scroll-mt-28">
-      <div className="container mx-auto px-4">
+      <GoldenArcBackground position="top-right" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           {/* Contenido de Imagen (Ahora a la Izquierda) */}
@@ -972,7 +970,9 @@ function MeetVolt() {
 
   return (
     <section id="meet-volt" className="py-12 bg-blue-50 overflow-hidden scroll-mt-28">
-      <div className="container mx-auto px-4">
+      <GoldenArcBackground position="bottom-left" />
+      <GoldenArcBackground position="top-right" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
           {/* IMAGEN: Izquierda (lg:order-1) */}
           <div className="w-full lg:w-5/12 flex justify-center relative lg:mb-0 order-1 lg:order-1">
@@ -1515,5 +1515,26 @@ function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+function GoldenArcBackground({ className, position = "top-right" }: { className?: string, position?: "top-right" | "bottom-left" }) {
+  const isTopRight = position === "top-right";
+  return (
+    <div className={`absolute inset-0 overflow-hidden pointer-events-none z-0 ${className}`}>
+      <svg
+        className="absolute w-full h-full opacity-20"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <circle
+          cx={isTopRight ? "100" : "0"}
+          cy={isTopRight ? "0" : "100"}
+          r="40"
+          fill="none"
+          stroke="var(--color-brand-yellow)"
+          strokeWidth="0.5"
+        />
+      </svg>
+    </div>
   );
 }
