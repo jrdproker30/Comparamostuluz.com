@@ -248,7 +248,7 @@ function Hero() {
   //  const [, setLocation] = useLocation();
   return (
     <section className="relative overflow-hidden bg-[#0C1A2B] min-h-[85vh] flex items-center text-white">
-      <div className="absolute top-0 right-0 w-full lg:w-[55%] h-full z-0">
+      <div className="absolute top-24 right-0 w-full lg:w-[45%] h-[calc(100%-6rem)] z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A2B] via-[#0C1A2B]/90 to-transparent lg:via-[#0C1A2B]/40 z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A2B] via-transparent to-transparent z-10 lg:hidden"></div>
         <img
@@ -1081,7 +1081,7 @@ function FAQ() {
   return (
     <section
       id="faq"
-      className="py-20 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden scroll-mt-28"
+      className="py-10 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden scroll-mt-28"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1136,8 +1136,9 @@ function FAQ() {
             ))}
           </Accordion>
           {/* Columna Derecha: Volt */}
-       <div className="flex justify-center">
+       <div className="flex justify-start relative pt-10 mb-20">
   <div className="relative w-full max-w-xs scale-90"> 
+    {/* Fondo difuminado detrás */}
     <motion.div
       animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.95, 1, 0.95] }}
       transition={{
@@ -1147,30 +1148,31 @@ function FAQ() {
       }}
       className="absolute inset-0 bg-blue-500/20 rounded-full blur-[50px]"
     ></motion.div>
-    {/* 1. Icono Arriba Derecha (Corregido: color amarillo forzado y posición) */}
+    {/* SOMBRA */}
+    <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-[90%] h-8 bg-black/60 blur-xl rounded-[100%] z-0"></div>
+    {/* BURBUJA DE PENSAMIENTO (CON DELAY DE 1.5s) */}
     <motion.div
-      animate={{ y: [0, -15, 0], rotate: [0, -5, 5, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute -top-6 right-0 z-50 text-yellow-400"
+      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: false, margin: "-50px" }}
+      transition={{ type: "spring", duration: 0.6, delay: 0.8 }} 
+      className="absolute -top-32 -right-16 z-50" 
     >
-      <HelpCircle className="w-24 h-24 drop-shadow-lg filter brightness-110" />
+      <div className="relative filter drop-shadow-xl top-14 right-22">
+        {/* Forma de Nube SVG */}
+        <svg width="170" height="120" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 70C25 70 15 60 15 45C15 30 25 20 40 20C42 20 44 20.5 46 21.5C50 10 60 5 75 5C90 5 100 15 105 25C115 25 125 35 125 50C125 65 115 75 100 75H40Z" fill="white"/>
+        </svg>
+        {/* Icono de Interrogación Azul */}
+        <div className="absolute inset-0 flex items-center justify-center pb-8 pr-4 top-4 left-4">
+           <HelpCircle className="w-16 h-16 text-[#002782] stroke-[2.5]" />
+        </div>
+        {/* Círculos de pensamiento */}
+        <div className="absolute bottom-6 left-12 w-5 h-5 bg-white rounded-full"></div>
+        <div className="absolute -bottom-1 left-8 w-3 h-3 bg-white rounded-full"></div>
+      </div>
     </motion.div>
-    {/* 2. Icono Medio Izquierda */}
-    <motion.div
-      animate={{ y: [0, -10, 0], rotate: [0, 5, -5, 0] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-      className="absolute top-24 -left-10 z-50 text-yellow-400"
-    >
-      <HelpCircle className="w-20 h-20 drop-shadow-lg filter brightness-110" />
-    </motion.div>
-    {/* 3. Icono Abajo Derecha */}
-    <motion.div
-      animate={{ y: [0, -12, 0], rotate: [0, -10, 10, 0] }}
-      transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      className="absolute bottom-20 -right-8 z-50 text-yellow-400"
-    >
-      <HelpCircle className="w-20 h-20 drop-shadow-lg filter brightness-110" />
-    </motion.div>
+    {/* Imagen de Volt */}
     <img
       src={voltFAQ}
       alt="Volt respondiendo dudas"
