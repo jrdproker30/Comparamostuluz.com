@@ -337,8 +337,7 @@ function Hero() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-8 text-center lg:text-left pt-20 lg:pt-0"
-        >
+          className="space-y-8 text-center lg:text-left pt-32 lg:pt-0 pb-12 lg:pb-0">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
             Ahorra en tu factura de luz sin{" "}
             <span className="text-[var(--color-brand-yellow)]">
@@ -1136,7 +1135,7 @@ function FAQ() {
             ))}
           </Accordion>
           {/* Columna Derecha: Volt */}
-       <div className="flex justify-start relative pt-10 mb-20">
+       <div className="flex justify-center lg:justify-start relative pt-10 mb-20">
   <div className="relative w-full max-w-xs scale-90"> 
     {/* Fondo difuminado detrás */}
     <motion.div
@@ -1337,22 +1336,22 @@ function Footer() {
         </svg>
       </div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16">
           {/* Columna 1: Logo + Texto */}
-          <div className="space-y-4">
+          <div className="col-span-2 md:col-span-1 lg:col-span-1 space-y-4">
             <img
               src={logoFooter}
               alt="ComparamosTuLuz"
-              className="h-12 w-auto"
+              className="h-auto w-auto mx-auto"
             />
-            <p className="text-sm leading-relaxed text-[#C6CFDA]">
+            <p className="text-lg text-center leading-relaxed text-[#C6CFDA]">
               Tu plataforma para comparar tarifas de electricidad de manera
               transparente y ahorrar en tu factura cada mes.
             </p>
           </div>
 
           {/* Columna 2: Navegación */}
-          <div>
+          <div className="col-span-1">
             <h4 className="text-white font-bold mb-6 text-lg">Navegación</h4>
             <ul className="space-y-3 text-sm">
               <li>
@@ -1422,7 +1421,7 @@ function Footer() {
           </div>
 
           {/* Columna 3: Recursos */}
-          <div>
+          <div className="col-span-1">
             <h4 className="text-white font-bold mb-6 text-lg">Recursos</h4>
             <ul className="space-y-3 text-sm">
               <li>
@@ -1465,7 +1464,7 @@ function Footer() {
           </div>
 
           {/* Columna 4: Contacto */}
-          <div>
+          <div className="col-span-2 md:col-span-1 lg:col-span-1">
             <h4 className="text-white font-bold mb-6 text-lg">Contacto</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
