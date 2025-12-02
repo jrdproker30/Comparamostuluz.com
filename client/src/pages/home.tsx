@@ -55,7 +55,7 @@ import voltTools from "@assets/conoce-a-volt.webp";
 import voltHowToWork from "@assets/volt_hero_final.png";
 import voltAhorro from "@assets/volt_ahorro.png";
 import logoRound from "@assets/logo_ctl_clean.png";
-import logoLoading from "@assets/logo sin fondo.png";
+
 import arcosImage from "@assets/arcos.png";
 import testimonialMaria from "@assets/testimonial_maria.jpg";
 import testimonialCarlos from "@assets/testimonial_carlos.jpg";
@@ -70,14 +70,10 @@ import voltFAQ from "@assets/volt-intriga.webp";
 
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+
   return (
     <div className="min-h-screen bg-background font-sans overflow-x-hidden">
-      <AnimatePresence>{loading && <Preloader />}</AnimatePresence>
+
       <Navbar />
       <Hero />
       <Features />
@@ -93,36 +89,7 @@ export default function Home() {
   );
 }
 
-function Preloader() {
-  return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--color-brand-blue)]"
-    >
-      <div className="relative">
-        <motion.div
-          animate={{ y: [0, -15, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <img src={logoLoading} alt="Logo" className="w-48 h-auto" />
-        </motion.div>
-        <motion.div
-          className="absolute -top-6 -right-6 text-[var(--color-brand-yellow)]"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 15, -15, 0],
-            filter: ["brightness(1)", "brightness(1.5)", "brightness(1)"],
-          }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <Zap className="w-12 h-12 fill-current drop-shadow-[0_0_10px_rgba(255,255,0,0.5)]" />
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
+
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -140,13 +107,20 @@ function Navbar() {
       className="fixed top-0 left-0 z-50 w-full border-b border-white/5 transition-all duration-300 text-[#C6CFDA] bg-[#0F1B2D]"
     >
       <div className="container mx-auto px-4 flex h-24 items-center justify-between">
-        <div className="flex items-center gap-2">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="flex items-center gap-2"
+        >
           <img
             src={logoRound}
             alt="CTL Logo"
             className="h-16 md:h-20 w-auto transition-transform duration-300 hover:scale-110"
           />
-        </div>
+        </a>
         <div className="hidden xl:flex items-center">
           {[
             { name: "Beneficios", href: "#features" },
@@ -443,7 +417,7 @@ function Features() {
       id="features"
       className="py-20 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28"
     >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <svg
           className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
           viewBox="0 0 100 100"
@@ -744,7 +718,7 @@ function Testimonials() {
       id="testimonials"
       className="py-20  bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28"
     >
-            {/* Background Pattern */}
+      {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <svg
           className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
@@ -1134,6 +1108,14 @@ function FAQ() {
     {
       q: "¿Cómo analizan mi factura?",
       a: "Nuestro sistema identifica tus consumos, horarios y tipo de tarifa actual para encontrar alternativas más económicas y transparentes.",
+    },
+    {
+      q: "¿Las recomendaciones son imparciales?",
+      a: "La comparativa es 100% imparcial, basada únicamente en tu consumo y en la transparencia.",
+    },
+    {
+      q: "¿Necesito subir mi factura completa para recibir el análisis?",
+      a: "Sí. Analizamos tu factura real para ofrecerte resultados exactos y personalizados. Esto nos permite detectar oportunidades de ahorro que no aparecen en simulaciones.",
     },
   ];
   return (
