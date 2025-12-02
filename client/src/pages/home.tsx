@@ -40,6 +40,12 @@ import {
   Star,
   Target,
   Eye,
+  MapPin,
+  Mail,
+  HelpCircle,
+  BookOpen,
+  Lock,
+  Home as HomeIcon,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -129,11 +135,10 @@ function Navbar() {
   }, []);
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 text-white ${
-        isScrolled
-          ? "bg-[#002782]/60 backdrop-blur-md border-white/20 shadow-lg"
-          : "bg-brand-gradient border-transparent"
-      }`}
+      className={`fixed top-0 left-0 z-50 w-full border-b transition-all duration-300 text-white ${isScrolled
+        ? "bg-[#002782]/90 backdrop-blur-md border-white/20 shadow-lg"
+        : "bg-brand-gradient border-transparent"
+        }`}
     >
       <div className="container mx-auto px-4 flex h-24 items-center justify-between">
         <div className="flex items-center gap-2">
@@ -147,7 +152,7 @@ function Navbar() {
           {[
             { name: "Beneficios", href: "#features" },
             { name: "Cómo funciona", href: "#how-it-works" },
-            // { name: "Comparativa", href: "#comparison" },
+            { name: "Comparativa", href: "#comparison" },
             { name: "Opiniones", href: "#testimonials" },
             { name: "Sobre nosotros", href: "#about-us" },
             { name: "Conoce a Volt", href: "#meet-volt" },
@@ -199,13 +204,13 @@ function Navbar() {
             className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
           >
-            {/* Comparativa
+            Comparativa
           </a>
           <a
             href="#testimonials"
             className="block text-sm font-bold uppercase text-foreground hover:text-[var(--color-brand-yellow)]"
             onClick={() => setIsOpen(false)}
-          > */}
+          >
             Opiniones
           </a>
           <a
@@ -255,7 +260,7 @@ function Hero() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="absolute top-[35%] left-[10%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transform hover:scale-105 transition-transform duration-300"
+            className="absolute top-[35%] left-[10%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)]"
           >
             <div className="bg-[var(--color-brand-yellow)] p-3 rounded-full text-primary shadow-lg">
               <Users className="w-6 h-6" />
@@ -273,7 +278,7 @@ function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="absolute top-[55%] right-[5%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transform hover:scale-105 transition-transform duration-300"
+            className="absolute top-[55%] right-[5%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)]"
           >
             <div className="bg-[var(--color-brand-yellow)] p-3 rounded-full text-primary shadow-lg">
               <Zap className="w-6 h-6" />
@@ -291,7 +296,7 @@ function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
-            className="absolute bottom-[10%] left-[35%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transform hover:scale-105 transition-transform duration-300"
+            className="absolute bottom-[10%] left-[35%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)]"
           >
             <div className="bg-[var(--color-brand-yellow)] p-3 rounded-full text-primary shadow-lg">
               <ShieldCheck className="w-6 h-6" />
@@ -339,7 +344,7 @@ function Hero() {
               complicaciones
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed mb-10">
             Comparamos por ti las mejores tarifas del mercado y te mostramos la
             opción que realmente te ayuda a pagar menos cada mes.
           </p>
@@ -438,12 +443,12 @@ function Features() {
   return (
     <section
       id="features"
-      className="py-20 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10"
+      className="py-20 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28"
     >
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            ¿Por qué elegirnos?
+            ¿Por qué <span className="text-[var(--color-brand-yellow)]">elegirnos</span>?
           </h2>
           <p className="text-lg text-blue-100">
             Descubre cómo te ayudamos a pagar menos por tu factura de luz,
@@ -458,9 +463,9 @@ function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex flex-col items-center text-center group"
+              className="flex flex-col items-center text-center group hover:-translate-y-1 transition-transform duration-300 hover:shadow-[0_0_16px_rgba(255,255,255,0.12)] rounded-2xl p-6"
             >
-              <div className="mb-6 p-4 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors duration-300 border border-white/5">
+              <div className="mb-6 p-4 rounded-full bg-white/5 group-hover:bg-white/10 transition-all duration-300 border border-white/5 group-hover:rotate-6">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-bold text-white mb-3">
@@ -503,13 +508,36 @@ function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-24 md:py-32 bg-[#0F1B2D] border-t border-white/5 relative"
+      className="py-24 md:py-32 bg-[#0F1B2D] border-t border-white/5 relative scroll-mt-28 overflow-hidden"
     >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <svg
+          className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0 100 C 20 0 50 0 100 100 Z"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.2"
+          />
+        </svg>
+      </div>
       <div className="absolute top-0 left-0 w-full h-px bg-white/5"></div>
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            ¿Cómo funciona?
+            ¿Cómo <span className="text-[var(--color-brand-yellow)]">funciona</span>?
           </h2>
           <p className="text-lg text-[#C6CFDA]">
             Nuestro proceso es rápido, fácil y pensado para ayudarte a pagar
@@ -517,114 +545,138 @@ function HowItWorks() {
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-12 relative">
-       {steps.map((step, index) => (
-  <motion.div
-    key={index}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.2, duration: 0.6 }}
-    // CAMBIO: Añadimos estilo de tarjeta y la animación de hover aquí
-    className="flex flex-col items-center text-center group bg-[#102033] border border-white/5 rounded-2xl p-8 shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-  >
-    {/* CAMBIO: Quitamos hover:-translate-y-2 y cursor-pointer del icono porque ahora está en la tarjeta */}
-    <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center mb-6 bg-white/5 group-hover:bg-white/10 transition-all duration-300 relative">
-      {step.icon}
-      <div className="absolute -top-2 -right-2 w-8 h-8 bg-[var(--color-brand-yellow)] rounded-full flex items-center justify-center text-[#0F1B2D] font-bold text-sm border-2 border-[#0F1B2D]">
-        {index + 1}
-      </div>
-    </div>
-    <h3 className="text-xl font-bold text-white mb-4">
-      {step.title}
-    </h3>
-    <p className="text-[#C6CFDA] leading-relaxed max-w-sm mx-auto">
-      {step.description}
-    </p>
-  </motion.div>
-))}
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2, duration: 0.6 }}
+              className="flex flex-col items-center text-center group bg-[#102033] border border-white/5 rounded-2xl p-8 shadow-lg hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+            >
+              <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center mb-6 bg-white/5 group-hover:bg-white/10 transition-all duration-300 relative">
+                {step.icon}
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-[var(--color-brand-yellow)] rounded-full flex items-center justify-center text-[#0F1B2D] font-bold text-sm border-2 border-[#0F1B2D]">
+                  {index + 1}
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                {step.title}
+              </h3>
+              <p className="text-[#C6CFDA] leading-relaxed max-w-sm mx-auto">
+                {step.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
+
 function Comparison() {
   return (
-    <section id="comparison" className="py-20 bg-blue-50 relative overflow-hidden">
+    <section id="comparison" className="py-20 bg-blue-50 relative overflow-hidden scroll-mt-28">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-5">
-          
-          {/* Contenido de Texto */}
-          <div className="lg:w-1/2 space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0C1A2B] leading-tight">
-              Te comparamos la tasa entre{" "}
-              <span className="text-[var(--color-brand-yellow)]">
-                +20 compañías
-              </span>{" "}
-              del mercado
-            </h2>
-            
-            <div className="space-y-6">
-              {/* Característica 1 */}
-              <div className="flex items-start gap-4 group">
-                <div className="p-3 rounded-full bg-blue-50 text-[#002782] group-hover:bg-[var(--color-brand-yellow)] group-hover:text-[#002782] transition-colors duration-300">
-                  <ShieldCheck className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#0C1A2B]">
-                    Ágil y Seguro
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Tu información está protegida y el proceso es rápido, sin
-                    papeleos innecesarios.
-                  </p>
-                </div>
-              </div>
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-              {/* Característica 2 */}
-              <div className="flex items-start gap-4 group">
-                <div className="p-3 rounded-full bg-blue-50 text-[#002782] group-hover:bg-[var(--color-brand-yellow)] group-hover:text-[#002782] transition-colors duration-300">
-                  <Search className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#0C1A2B]">
-                    Estudios 100% Transparentes
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Analizamos tu factura con total claridad, sin letras pequeñas
-                    ni comisiones ocultas.
-                  </p>
-                </div>
-              </div>
-
-              {/* Característica 3 */}
-              <div className="flex items-start gap-4 group">
-                <div className="p-3 rounded-full bg-blue-50 text-[#002782] group-hover:bg-[var(--color-brand-yellow)] group-hover:text-[#002782] transition-colors duration-300">
-                  <MessageCircle className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#0C1A2B]">
-                    Volt te explica tus dudas
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Nuestro experto canino y nuestro equipo de soporte están aquí
-                    para guiarte en cada paso.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contenido de Imagen */}
-          <div className="lg:w-1/2 relative flex justify-center">
+          {/* Contenido de Imagen (Ahora a la Izquierda) */}
+          <div className="lg:w-5/12 relative flex justify-center lg:justify-end">
             {/* Elementos decorativos de fondo */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-brand-yellow)]/20 to-transparent rounded-full blur-3xl transform scale-90"></div>
-            
+
             <img
               src={voltAhorro}
               alt="Comparativa de mercado con Volt"
-              className="relative z-10 w-full max-w-md object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+              className="relative z-10 w-full max-w-sm lg:max-w-md object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
             />
+          </div>
+
+          {/* Contenido de Texto (Ahora a la Derecha) */}
+          <div className="lg:w-7/12 space-y-8">
+            <div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1c2e4a] leading-tight mb-6">
+                Te comparamos la tasa entre{" "}
+                <span className="text-[var(--color-brand-yellow)]">
+                  +20 compañías
+                </span>{" "}
+                del mercado
+              </h2>
+              <p className="text-lg text-[#1c2e4a] leading-relaxed mb-8">
+                En un mercado lleno de tarifas confusas y mensajes poco claros, nosotros te ayudamos a ver de forma simple, transparente y directa cuál es la mejor opción para ti.
+              </p>
+
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-start gap-3">
+                  <div className="mt-1">
+                    <BarChart3 className="w-6 h-6 text-[#1c2e4a]" />
+                  </div>
+                  <span className="text-[#1c2e4a] font-medium">Análisis real basado en tu consumo, no en simulaciones.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="mt-1">
+                    <FileText className="w-6 h-6 text-[#1c2e4a]" />
+                  </div>
+                  <span className="text-[#1c2e4a] font-medium">Estudio directo desde tu factura real: sin errores ni estimaciones fallidas.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="mt-1">
+                    <ShieldCheck className="w-6 h-6 text-[#1c2e4a]" />
+                  </div>
+                  <span className="text-[#1c2e4a] font-medium">Recomendaciones transparentes: sin letra pequeña ni estrategias comerciales.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Tabla de Comparación */}
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="grid grid-cols-2">
+                {/* Header Otros */}
+                <div className="bg-red-50/50 p-4 text-center border-b border-gray-200">
+                  <span className="font-bold text-[#E25555] uppercase tracking-wider text-sm">Otros</span>
+                </div>
+                {/* Header Nosotros */}
+                <div className="bg-[#1c2e4a] p-4 text-center border-b border-[#1c2e4a] relative">
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="font-bold text-white uppercase tracking-wider text-sm">Nosotros</span>
+                  </div>
+                </div>
+
+                {/* Row 1 */}
+                <div className="p-4 text-center border-b border-gray-100 bg-red-50/50 text-[#E25555] text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  Procesos lentos
+                </div>
+                <div className="p-4 text-center border-b border-gray-100 bg-blue-50/30 text-[#1c2e4a] font-semibold text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  Solo lo que necesitas ver
+                </div>
+
+                {/* Row 2 */}
+                <div className="p-4 text-center border-b border-gray-100 bg-red-50/50 text-[#E25555] text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  Ofertas confusas
+                </div>
+                <div className="p-4 text-center border-b border-gray-100 bg-blue-50/30 text-[#1c2e4a] font-semibold text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  100% Digital y claro
+                </div>
+
+                {/* Row 3 */}
+                <div className="p-4 text-center border-b border-gray-100 bg-red-50/50 text-[#E25555] text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  Resultados genéricos
+                </div>
+                <div className="p-4 text-center border-b border-gray-100 bg-blue-50/30 text-[#1c2e4a] font-semibold text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  Recomendaciones personalizadas
+                </div>
+
+                {/* Row 4 */}
+                <div className="p-4 text-center bg-red-50/50 text-[#E25555] text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  Esperas interminables
+                </div>
+                <div className="p-4 text-center bg-blue-50/30 text-[#1c2e4a] font-semibold text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
+                  Resultados en segundos
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -668,7 +720,7 @@ function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-20  bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10"
+      className="py-20  bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28"
     >
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -770,14 +822,37 @@ function AboutUs() {
   return (
     <section
       id="about-us"
-      className="py-20 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden"
+      className="py-20 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden scroll-mt-28"
     >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <svg
+          className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0 100 C 20 0 50 0 100 100 Z"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.2"
+          />
+        </svg>
+      </div>
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           <div className="flex-1 space-y-8">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Sobre nosotros
+                Sobre <span className="text-[var(--color-brand-yellow)]">nosotros</span>
               </h2>
               <p className="text-lg text-[#C6CFDA] leading-relaxed">
                 En ComparamosTuLuz ayudamos a miles de personas a pagar lo justo
@@ -866,89 +941,36 @@ function AboutUs() {
 }
 
 function MeetVolt() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const features = [
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = [
     {
-      title: "Vigila las tarifas 24/7",
-      description:
-        "Monitorizamos el mercado eléctrico en tiempo real para asegurar que siempre pagues el precio más justo, sin sorpresas.",
+      id: 0,
+      label: "Ágil y Seguro",
+      title: "🔐 Protegido desde el inicio",
+      content:
+        "Volt cuida tu información desde el primer instante para que todo sea seguro y sin complicaciones.",
     },
     {
-      title: "Te avisa de oportunidades de ahorro",
-      description:
-        "Si detectamos una tarifa mejor que la tuya, te enviamos una alerta personalizada para que puedas cambiarte y ahorrar al instante.",
+      id: 1,
+      label: "Claridad real",
+      title: "🔎 Claridad real",
+      content:
+        "Analiza tu factura tal cual es, sin letra pequeña ni tecnicismos innecesarios.",
     },
     {
-      title: "Te defiende ante las eléctricas",
-      description:
-        "Nos encargamos de las gestiones pesadas. Si tienes una incidencia o un cobro indebido, Volt reclama por ti.",
+      id: 2,
+      label: "A tu lado en cada decisión",
+      title: "💬 Te guía paso a paso",
+      content:
+        "Volt te explica lo esencial para que elijas la mejor tarifa con confianza.",
     },
   ];
+
   return (
-    <section
-      id="meet-volt"
-      className="py-12 bg-blue-50 overflow-hidden"
-    >
+    <section id="meet-volt" className="py-12 bg-blue-50 overflow-hidden scroll-mt-28">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
-          
-          {/* TEXTO: Ahora a la derecha en Desktop (lg:order-2) */}
-          <div className="w-full lg:w-6/12 order-2 lg:order-2">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 uppercase tracking-tight text-center lg:text-left">
-              Conoce a Volt, tu{" "}
-              <span className="text-[var(--color-brand-yellow)]">experto</span>{" "}
-              en luz
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6 text-center lg:text-left">
-              Volt es el chihuahua que te acompaña en cada paso. Él representa
-              nuestra forma de trabajar: cercano, inteligente y siempre atento a
-              que no pagues de más.
-            </p>
-            <div className="space-y-4">
-              {features.map((item, i) => (
-                <motion.div
-                  key={i}
-                  className={`bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer transition-all duration-300 ${
-                    openIndex === i
-                      ? "ring-2 ring-[var(--color-brand-yellow)]"
-                      : "hover:shadow-md"
-                  }`}
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  initial={false}
-                >
-                  <div className="flex items-center gap-3 p-4">
-                    <div className="w-8 h-8 bg-[var(--color-brand-yellow)] rounded-full flex items-center justify-center shrink-0">
-                      <Zap className="w-4 h-4 text-primary" />
-                    </div>
-                    <span className="font-bold text-primary flex-1">
-                      {item.title}
-                    </span>
-                    <motion.div
-                      animate={{ rotate: openIndex === i ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                    </motion.div>
-                  </div>
-                  <AnimatePresence>
-                    {openIndex === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="px-4 pb-4 pl-15 text-muted-foreground text-sm">
-                          {item.description}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          {/* IMAGEN: Ahora a la izquierda en Desktop (lg:order-1) */}
+          {/* IMAGEN: Izquierda (lg:order-1) */}
           <div className="w-full lg:w-5/12 flex justify-center relative lg:mb-0 order-1 lg:order-1">
             <div className="relative scale-100 lg:scale-110 w-full max-w-sm lg:max-w-md mx-auto">
               <motion.div
@@ -975,31 +997,59 @@ function MeetVolt() {
                 alt="Volt con herramientas"
                 className="w-full drop-shadow-2xl relative z-10"
               />
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-16 left-0 lg:top-24 lg:-left-4 bg-white shadow-xl border border-blue-100 px-5 py-2.5 lg:px-4 lg:py-2 rounded-full flex items-center gap-2 z-20">
-                <Brain className="w-4 h-4 text-[var(--color-brand-yellow)] fill-[var(--color-brand-yellow)]" />
-                <span className="text-sm font-bold text-primary">Experto</span>
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3.5,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-                className="absolute bottom-10 -right-4 lg:bottom-16 lg:-right-4 bg-white shadow-xl border border-blue-100 px-4 py-2 rounded-full flex items-center gap-2 z-20">
-                <ShieldCheck className="w-4 h-4 text-[var(--color-brand-yellow)]" />
-                <span className="text-sm font-bold text-primary">
-                  Protector
-                </span>
-              </motion.div>
+            </div>
+          </div>
+
+          {/* TEXTO: Derecha (lg:order-2) */}
+          <div className="w-full lg:w-6/12 order-2 lg:order-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1c2e4a] mb-6 uppercase tracking-tight text-center lg:text-left">
+              Conoce a Volt: tu{" "}
+              <span className="text-[var(--color-brand-yellow)]">guía</span> en
+              todo el proceso
+            </h2>
+            <p className="text-lg text-[#1c2e4a] mb-8 text-center lg:text-left">
+              Esta sección existe para que tengas a alguien de confianza
+              acompañándote en cada paso. Volt, nuestro experto canino, es la
+              representación de nuestro compromiso: claridad, protección y ayuda
+              real.
+            </p>
+
+            {/* TABS NAVIGATION */}
+            <div className="flex flex-wrap gap-2 mb-6 justify-center lg:justify-start">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onMouseEnter={() => setActiveTab(tab.id)}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 ${activeTab === tab.id
+                    ? "bg-[var(--color-brand-yellow)] text-white shadow-md transform scale-105"
+                    : "bg-white text-[#1c2e4a] border border-gray-200 hover:bg-gray-50"
+                    }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* TABS CONTENT */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 min-h-[160px] flex items-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-full"
+                >
+                  <h3 className="text-xl font-bold text-[#1c2e4a] mb-3 flex items-center gap-2">
+                    {tabs[activeTab].title}
+                  </h3>
+                  <p className="text-[#1c2e4a] text-lg leading-relaxed">
+                    {tabs[activeTab].content}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -1026,22 +1076,37 @@ function FAQ() {
       q: "¿Cómo analizan mi factura?",
       a: "Nuestro sistema identifica tus consumos, horarios y tipo de tarifa actual para encontrar alternativas más económicas y transparentes.",
     },
-    {
-      q: "¿Las comparativas son imparciales?",
-      a: "Sí. No favorecemos a ninguna compañía. Nuestro análisis es independiente para mostrarte solo las opciones que realmente te benefician.",
-    },
-    {
-      q: "¿Cuánto tiempo tarda el proceso?",
-      a: "Menos de 5 minutos. Solo subes tu factura, analizamos los datos y te mostramos las mejores tarifas disponibles.",
-    },
-    {
-      q: "¿Necesito tener conocimientos técnicos?",
-      a: "No. Nosotros nos encargamos de todo. Tú solo debes elegir la opción que mejor se adapte a ti.",
-    },
   ];
   return (
-    <section id="faq" className="py-20 bg-[#0F1B2D] border-t border-white/5">
-      <div className="container mx-auto px-4 max-w-3xl">
+    <section
+      id="faq"
+      className="py-20 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden scroll-mt-28"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <svg
+          className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0 100 C 20 0 50 0 100 100 Z"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.2"
+          />
+        </svg>
+      </div>
+
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Preguntas frecuentes
@@ -1051,22 +1116,44 @@ function FAQ() {
             funciona nuestra plataforma y cómo puedes empezar a ahorrar.
           </p>
         </div>
-        <Accordion type="single" collapsible className="w-full space-y-4">
-          {faqs.map((faq, i) => (
-            <AccordionItem
-              key={i}
-              value={`item-${i}`}
-              className="border border-white/5 rounded-xl bg-[#102033] px-6"
-            >
-              <AccordionTrigger className="text-left font-bold text-white hover:text-[var(--color-brand-yellow)] hover:no-underline py-6 text-lg [&[data-state=open]]:text-[var(--color-brand-yellow)] transition-colors">
-                {faq.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-[#C6CFDA] pb-6 text-base leading-relaxed">
-                {faq.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Columna Izquierda: Preguntas */}
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqs.map((faq, i) => (
+              <AccordionItem
+                key={i}
+                value={`item-${i}`}
+                className="border border-white/5 rounded-xl bg-[#102033] px-6 transition-all duration-200 ease-out hover:shadow-[0_0_12px_rgba(255,255,255,0.08)] hover:-translate-y-[2px] [&[data-state=open]]:shadow-[0_0_16px_rgba(255,255,255,0.12)] [&[data-state=open]]:border-white/20"
+              >
+                <AccordionTrigger className="text-left font-bold text-white hover:text-[var(--color-brand-yellow)] hover:no-underline py-6 text-lg [&[data-state=open]]:text-[var(--color-brand-yellow)] transition-colors">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-[#C6CFDA] pb-6 text-base leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          {/* Columna Derecha: Volt */}
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-sm">
+              <motion.div
+                animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.95, 1, 0.95] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-blue-500/20 rounded-full blur-[50px]"
+              ></motion.div>
+              <img
+                src={voltBoton}
+                alt="Volt respondiendo dudas"
+                className="w-full h-auto relative z-10 drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -1076,6 +1163,29 @@ function CTA() {
   // const [, setLocation] = useLocation(); 
   return (
     <section className="py-20  bg-[var(--color-brand-blue)] relative overflow-hidden border-t border-white/5">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <svg
+          className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0 100 C 20 0 50 0 100 100 Z"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.2"
+          />
+        </svg>
+      </div>
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
       <div className="container mx-auto px-4 relative z-10 text-center">
@@ -1123,7 +1233,30 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="bg-[#0C1A2B] text-[#C6CFDA] py-16 border-t border-white/5 font-sans relative overflow-hidden">
+    <footer className="bg-[#0F1B2D] text-[#C6CFDA] py-16 border-t border-white/5 font-sans relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <svg
+          className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0 100 C 20 0 50 0 100 100 Z"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.2"
+          />
+        </svg>
+      </div>
       {/* Líneas decorativas - Superior Izquierda */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <svg
@@ -1150,14 +1283,13 @@ function Footer() {
           />
         </svg>
       </div>
-      {/* Líneas decorativas - Inferior Derecha (NUEVO) */}
+      {/* Líneas decorativas - Inferior Derecha */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <svg
           className="absolute bottom-0 right-0 w-full h-full opacity-20"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
-          {/* Ajustamos cx y cy a 100 para que el centro sea la esquina inferior derecha */}
           <circle
             cx="100"
             cy="100"
@@ -1178,145 +1310,168 @@ function Footer() {
         </svg>
       </div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16">
-          <div className="space-y-2 col-span-2 md:col-span-1 lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16">
+          {/* Columna 1: Logo + Texto */}
+          <div className="space-y-4">
             <img
               src={logoFooter}
               alt="ComparamosTuLuz"
-              className="h-[50%] w-auto mx-auto md:mx-0"
+              className="h-12 w-auto"
             />
-            <p className="text-sm leading-relaxed text-center">
+            <p className="text-sm leading-relaxed text-[#C6CFDA]">
               Tu plataforma para comparar tarifas de electricidad de manera
               transparente y ahorrar en tu factura cada mes.
             </p>
           </div>
+
+          {/* Columna 2: Navegación */}
           <div>
             <h4 className="text-white font-bold mb-6 text-lg">Navegación</h4>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href="#"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
+                  <HomeIcon className="w-4 h-4 text-[var(--color-brand-yellow)]" />
                   Inicio
                 </a>
               </li>
               <li>
                 <a
-                  href="#how-it-works"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  href="#features"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
+                  <TrendingDown className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                  Beneficios
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#how-it-works"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <Zap className="w-4 h-4 text-[var(--color-brand-yellow)]" />
                   Cómo funciona
                 </a>
               </li>
               <li>
                 <a
                   href="#comparison"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  Tarifas destacadas
+                  <BarChart3 className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                  Comparativa
                 </a>
               </li>
               <li>
                 <a
                   href="#testimonials"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
+                  <MessageCircle className="w-4 h-4 text-[var(--color-brand-yellow)]" />
                   Opiniones
                 </a>
               </li>
               <li>
                 <a
                   href="#about-us"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
+                  <Users className="w-4 h-4 text-[var(--color-brand-yellow)]" />
                   Sobre nosotros
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#meet-volt"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <Brain className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                  Conoce a Volt
                 </a>
               </li>
             </ul>
           </div>
+
+          {/* Columna 3: Recursos */}
           <div>
             <h4 className="text-white font-bold mb-6 text-lg">Recursos</h4>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href="#faq"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
+                  <HelpCircle className="w-4 h-4 text-[var(--color-brand-yellow)]" />
                   Preguntas frecuentes
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  Guía de ahorro energético
+                  <BookOpen className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                  Guía de ahorro
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  Contacto
+                  <Lock className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                  Política de privacidad
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  Políticas de privacidad
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
-                >
+                  <FileText className="w-4 h-4 text-[var(--color-brand-yellow)]" />
                   Términos y condiciones
                 </a>
               </li>
             </ul>
           </div>
-          <div className="col-span-2 md:col-span-1 lg:col-span-1">
+
+          {/* Columna 4: Contacto */}
+          <div>
             <h4 className="text-white font-bold mb-6 text-lg">Contacto</h4>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <span className="font-medium text-white">Email:</span>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4 shrink-0 text-[var(--color-brand-yellow)]" />
                 <a
                   href="mailto:soporte@comparamostuluz.com"
-                  className="hover:text-[var(--color-brand-yellow)] transition-colors"
+                  className="hover:text-white transition-colors"
                 >
-                  soporte@comparamostuluz.com
+                  info@comparamostuluz.es
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <span className="font-medium text-white">Horario:</span>
+              <li className="flex items-center gap-2">
+                <Clock className="w-4 h-4 shrink-0 text-[var(--color-brand-yellow)]" />
                 <span>L–V 9:00–18:00</span>
               </li>
-              <li className="flex items-start gap-3">
-                <span className="font-medium text-white">Ubicación:</span>
-                <span>España</span>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 shrink-0 text-[var(--color-brand-yellow)]" />
+                <span>España - Valencia</span>
               </li>
             </ul>
           </div>
         </div>
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs md:text-sm">
-          <div className="text-center md:text-left">
-            <p>&copy; 2025 ComparamosTuLuz. Todos los derechos reservados.</p>
-          </div>
-          <div className="hidden md:block text-white/40 font-medium tracking-wide">
-            Transparencia · Seguridad · Ahorro
-          </div>
-          <div className="flex justify-center md:justify-end">
-            <img
-              src={logoUE}
-              alt="Financiado por la Unión Europea - NextGenerationEU"
-              className="h-10 md:h-12 w-auto opacity-90 hover:opacity-100 transition-opacity"
-            />
-          </div>
+
+        {/* Bottom Bar con Logo UE */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-[#64748B]">
+            © 2025 ComparamosTuLuz. Todos los derechos reservados.
+          </p>
+          <img
+            src={logoUE}
+            alt="Financiado por la Unión Europea"
+            className="h-10 w-auto opacity-90"
+          />
         </div>
       </div>
     </footer>
