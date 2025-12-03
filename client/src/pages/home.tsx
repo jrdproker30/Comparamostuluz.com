@@ -385,7 +385,7 @@ function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white/20 bg-transparent text-white hover:bg-white/10 h-14 px-8 font-bold rounded-xl"
+                className="border-white/20 bg-transparent text-white hover:bg-[var(--color-brand-yellow)] hover:text-[#FFFFFF] hover:-translate-y-1 hover:border-[var(--color-brand-white)] transition-all duration-300 h-14 px-8 font-bold rounded-xl"
               >
                 Hablar con un asesor
               </Button>
@@ -1040,7 +1040,7 @@ function MeetVolt() {
               <img
                 src={voltTools}
                 alt="Volt con herramientas"
-                className="w-full drop-shadow-2xl relative z-10"
+                className="w-full drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] relative z-10"
               />
             </div>
           </div>
