@@ -793,7 +793,7 @@ function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col p-8 rounded-[20px] bg-[#102033] border border-white/5 hover:border-[var(--color-brand-yellow)]/30 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.25)] h-full"
+                className="flex flex-col p-8 rounded-[20px] bg-[#102033] border border-white/5 hover:border-[var(--color-brand-yellow)]/30 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(255,255,255,0.25)] h-full"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/10 shrink-0">
@@ -832,7 +832,7 @@ function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i + 3) * 0.1 }}
-                className="flex flex-col p-8 rounded-[20px] bg-[#102033] border border-white/5 hover:border-[var(--color-brand-yellow)]/30 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.25)] h-full"
+                className="flex flex-col p-8 rounded-[20px] bg-[#102033] border border-white/5 hover:border-[var(--color-brand-yellow)]/30 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(255,255,255,0.25)] h-full"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/10 shrink-0">
