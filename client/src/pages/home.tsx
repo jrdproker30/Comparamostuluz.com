@@ -715,7 +715,7 @@ function Testimonials() {
   const testimonials = [
     {
       name: "María G., Madrid",
-      amount: "45€/mes",
+      amount: "42€/mes",
       text: "Pensaba que ya pagaba poco. Subí mi factura, en 5 minutos tenía una tarifa mejor y hoy pago mucho menos. Increíblemente fácil.",
       image: testimonialMaria,
     },
@@ -733,7 +733,7 @@ function Testimonials() {
     },
     {
       name: "Antonio S., Sevilla",
-      amount: "50€/mes",
+      amount: "35€/mes",
       text: "Somos 4 y el aire dispara la factura. Gracias a Comparamos Tu Luz bajamos el gasto casi a la mitad este verano.",
       image: testimonialAntonio,
     },
