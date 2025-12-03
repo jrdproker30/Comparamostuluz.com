@@ -67,6 +67,7 @@ import logoUE from "@assets/logo-compo-ue-color.png";
 import logoFooter from "@assets/logo_footer.webp";
 import voltBoton from "@assets/volt-boton.webp";
 import voltFAQ from "@assets/volt-intriga.webp";
+import thoughtBubble from "@assets/thought_bubble.png";
 
 
 export default function Home() {
@@ -231,19 +232,19 @@ function Hero() {
         <div className="absolute inset-0 z-20 hidden lg:block pointer-events-none">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={{ 
-              opacity: 1, 
+            animate={{
+              opacity: 1,
               x: 0,
               y: [0, -10, 0]
             }}
-            transition={{ 
+            transition={{
               opacity: { duration: 0.5, delay: 0.3 },
               x: { duration: 0.5, delay: 0.3 },
-              y: { 
-                duration: 4, 
-                repeat: Infinity, 
-                ease: "easeInOut", 
-                delay: 0.8 
+              y: {
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.8
               }
             }}
             className="absolute top-[35%] left-[10%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transition-all duration-200 ease-out hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)]"
@@ -262,19 +263,19 @@ function Hero() {
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            animate={{ 
-              opacity: 1, 
+            animate={{
+              opacity: 1,
               x: 0,
               y: [0, -10, 0]
             }}
-            transition={{ 
+            transition={{
               opacity: { duration: 0.5, delay: 0.5 },
               x: { duration: 0.5, delay: 0.5 },
-              y: { 
-                duration: 5, 
-                repeat: Infinity, 
-                ease: "easeInOut", 
-                delay: 1.0 
+              y: {
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.0
               }
             }}
             className="absolute top-[55%] right-[5%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transition-all duration-200 ease-out hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)]"
@@ -293,19 +294,19 @@ function Hero() {
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ 
-              opacity: 1, 
+            animate={{
+              opacity: 1,
               scale: 1,
               y: [0, -10, 0]
             }}
-            transition={{ 
+            transition={{
               opacity: { duration: 0.5, delay: 0.7 },
               scale: { duration: 0.5, delay: 0.7 },
-              y: { 
-                duration: 4.5, 
-                repeat: Infinity, 
-                ease: "easeInOut", 
-                delay: 1.2 
+              y: {
+                duration: 4.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.2
               }
             }}
             className="absolute bottom-[10%] left-[35%] pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-xl flex items-center gap-4 w-64 transition-all duration-200 ease-out hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)]"
@@ -634,7 +635,7 @@ function Comparison() {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1c2e4a] leading-tight mb-6">
                 Te comparamos la tasa entre{" "}
                 <span className="text-[var(--color-brand-yellow)]">
-                 <br /> +20 compañías
+                  <br /> +20 compañías
                 </span>{" "}
                 del mercado
               </h2>
@@ -1184,7 +1185,7 @@ function FAQ() {
             Preguntas <span className="text-[var(--color-brand-yellow)]">frecuentes</span>
           </h2>
           <p className="text-lg text-[#C6CFDA]">
-            Resolvemos las dudas más comunes para ayudarte a entender cómo
+            Resolvemos las dudas más comunes para ayudarte a entender cómo <br />
             funciona nuestra plataforma y cómo puedes empezar a ahorrar.
           </p>
         </div>
@@ -1208,7 +1209,12 @@ function FAQ() {
           </Accordion>
           {/* Columna Derecha: Volt */}
           <div className="flex justify-center lg:justify-start relative pt-10 mb-20">
-            <div className="relative w-full max-w-xs scale-90">
+            <motion.div
+              initial={{ scale: 0.9 }}
+              whileHover={{ scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-full max-w-xs"
+            >
               {/* Fondo difuminado detrás */}
               <motion.div
                 animate={{ opacity: [0.3, 0.15, 0.3], scale: [0.95, 1, 0.95] }}
@@ -1226,30 +1232,29 @@ function FAQ() {
                 initial={{ opacity: 0, scale: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: false, margin: "-50px" }}
-                transition={{ type: "spring", duration: 0.6, delay: 0.8 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 15,
+                  delay: 0.8
+                }}
                 className="absolute -top-32 -right-16 z-50"
               >
                 <div className="relative filter drop-shadow-xl top-14 right-22">
-                  {/* Forma de Nube SVG */}
-                  <svg width="170" height="120" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M40 70C25 70 15 60 15 45C15 30 25 20 40 20C42 20 44 20.5 46 21.5C50 10 60 5 75 5C90 5 100 15 105 25C115 25 125 35 125 50C125 65 115 75 100 75H40Z" fill="white" />
-                  </svg>
-                  {/* Icono de Interrogación Azul */}
-                  <div className="absolute inset-0 flex items-center justify-center pb-8 pr-4 top-4 left-4">
-                    <HelpCircle className="w-16 h-16 text-[#002782] stroke-[2.5]" />
-                  </div>
-                  {/* Círculos de pensamiento */}
-                  <div className="absolute bottom-6 left-12 w-5 h-5 bg-white rounded-full"></div>
-                  <div className="absolute -bottom-1 left-8 w-3 h-3 bg-white rounded-full"></div>
+                  <img
+                    src={thoughtBubble}
+                    alt="Thought Bubble"
+                    className="w-[170px] h-[120px] object-contain"
+                  />
                 </div>
               </motion.div>
               {/* Imagen de Volt */}
               <img
                 src={voltFAQ}
                 alt="Volt respondiendo dudas"
-                className="w-full h-auto relative z-10 drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto relative z-10 drop-shadow-2xl"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -1296,7 +1301,7 @@ function CTA() {
             por tu factura de luz
           </h2>
           <p className="text-lg md:text-xl text-[#C6CFDA] max-w-2xl mx-auto">
-            Obtén un análisis imparcial y descubre cuánto puedes ahorrar en
+            Obtén un análisis imparcial y descubre <br /> cuánto puedes ahorrar en
             menos de 5 minutos.
           </p>
           <div className="pt-4 pb-8">
@@ -1314,13 +1319,15 @@ function CTA() {
               "Comparativa imparcial",
               "Seguro y transparente",
             ].map((item, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/5"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/5 cursor-default"
               >
                 <CheckCircle2 className="w-4 h-4 text-[#00C97E]" />
                 <span>{item}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
