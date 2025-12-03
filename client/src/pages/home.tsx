@@ -634,7 +634,7 @@ function Comparison() {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1c2e4a] leading-tight mb-6">
                 Te comparamos la tasa entre{" "}
                 <span className="text-[var(--color-brand-yellow)]">
-                  +20 compañías
+                 <br /> +20 compañías
                 </span>{" "}
                 del mercado
               </h2>
@@ -700,14 +700,6 @@ function Comparison() {
                 </div>
                 <div className="p-4 text-center border-b border-gray-100 bg-blue-50/30 text-[#1c2e4a] font-semibold text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
                   Recomendaciones personalizadas
-                </div>
-
-                {/* Row 4 */}
-                <div className="p-4 text-center bg-red-50/50 text-[#E25555] text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
-                  Esperas interminables
-                </div>
-                <div className="p-4 text-center bg-blue-50/30 text-[#1c2e4a] font-semibold text-sm md:text-base hover:-translate-y-[2px] hover:shadow-[0_4px_10px_rgba(0,0,0,0.12)] transition-all duration-200 ease-out">
-                  Resultados en segundos
                 </div>
               </div>
             </div>
