@@ -1142,10 +1142,10 @@ function MeetVolt() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-20 w-auto mx-auto">
           {/* IMAGEN: Izquierda (lg:order-1) */}
-          <div className="w-5/12  lg:w-[80%] flex justify-center relative lg:mb-0 order-1 lg:order-1">
+          <div className=" w-auto lg:w-5/12 flex justify-center relative lg:mb-0 order-1 lg:order-1">
             <div className="relative scale-100 lg:scale-110 w-full max-w-sm lg:max-w-md mx-auto">
               {/* Círculo de fondo con sombra blanca sutil */}
-              <div className="absolute inset-0 m-auto w-[200px] h-[200px] lg:w-[380px] lg:h-[380px] bg-[#002782] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 z-0">
+              <div className="absolute inset-0 m-auto w-[300px] h-[300px] lg:w-[380px] lg:h-[380px] bg-[#002782] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 z-0">
                 {/* Arco Blanco (Superior Derecho) */}
                 <div className="absolute -top-[2px] -right-[2px] w-full h-full rounded-full border-t-4 border-r-4 border-white opacity-90 transform rotate-12 pointer-events-none"></div>
                 {/* Arco Amarillo (Inferior Izquierdo) */}
@@ -1312,7 +1312,7 @@ function FAQ() {
             ))}
           </Accordion>
           {/* Columna Derecha: Volt */}
-          <div className="flex justify-center lg:justify-center relative pt-4 mb-0 sm:pt-10 md:mb-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-500">
+            <div className="flex justify-center lg:justify-center relative pt-4 mb-0 sm:pt-10 md:mb-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-500">
             <motion.div
               initial={{ scale: 0.9 }}
               whileHover={{ scale: 0.95 }}
@@ -1356,7 +1356,8 @@ function FAQ() {
               <img
                 src={voltFAQ}
                 alt="Volt respondiendo dudas"
-                className="w-[80%] xl:w-10/8 h-auto relative z-10 drop-shadow-2xl"
+                // CAMBIO: Agregado 'mx-auto block' al final para centrar
+                className="w-[60%] xl:w-10/8 h-auto relative z-10 drop-shadow-2xl mx-auto block"
               />
             </motion.div>
           </div>
