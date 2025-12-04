@@ -8,6 +8,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import {
   Lightbulb,
   Zap,
   MousePointerClick,
@@ -68,7 +76,21 @@ import logoFooter from "@assets/logo_footer.webp";
 import voltBoton from "@assets/volt-boton.webp";
 import voltFAQ from "@assets/volt-intriga.webp";
 import thoughtBubble from "@assets/thought_bubble.png";
+import whatsappLogo from "@assets/whatsapp_logo.png";
 
+
+
+const WhatsAppIcon = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.585 1.961.893 2.796.893 3.183 0 5.768-2.586 5.768-5.766.001-3.181-2.585-5.768-5.768-5.78zM12 2C6.48 2 2 6.48 2 12c0 1.82.48 3.53 1.31 5.02L2 22l5.12-1.35C8.64 21.55 10.29 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm.01 18c-1.48 0-2.9-.4-4.13-1.1l-.3-.16-3.05.8.81-2.98-.19-.32c-.79-1.3-1.21-2.8-1.21-4.34 0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 9-9.01 9z" />
+    <path d="M16.57 14.38c-.23-.11-1.37-.68-1.58-.76-.21-.08-.37-.11-.52.11-.16.23-.61.76-.75.91-.14.16-.28.17-.51.06-.23-.11-.97-.36-1.85-1.14-.69-.62-1.16-1.38-1.29-1.61-.13-.23-.01-.36.1-.47.11-.1.23-.26.35-.39.11-.13.15-.22.23-.37.08-.16.04-.29-.02-.41-.06-.11-.52-1.26-.71-1.72-.19-.45-.38-.39-.52-.4-.13-.01-.28-.01-.43-.01-.15 0-.39.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.33.11.16 3.19 4.87 7.72 6.83 2.69 1.16 3.73.93 4.42.87.76-.07 1.67-.68 1.91-1.34.24-.66.24-1.22.17-1.34-.07-.11-.25-.17-.48-.29z" />
+  </svg>
+);
 
 export default function Home() {
 
@@ -145,8 +167,19 @@ function Navbar() {
               )}
             </div>
           ))}
-          <Button className="ml-4 bg-[var(--color-brand-yellow)] text-white hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 transition-all uppercase text-xs tracking-wide border-2 [text-shadow:1px_1px_2px_black] border-white whitespace-nowrap transition-all transform hover:scale-105">
-            Subir Factura
+          <Button asChild className="ml-4 bg-[var(--color-brand-yellow)] text-white hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 transition-all uppercase text-xs tracking-wide border-2 [text-shadow:1px_1px_2px_black] border-white whitespace-nowrap transition-all transform hover:scale-105">
+            <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+              Subir Factura
+            </a>
+          </Button>
+          <Button asChild className="ml-4 bg-transparent hover:bg-transparent text-white font-bold uppercase text-xs tracking-wide whitespace-nowrap transition-all transform hover:scale-105 p-0 border-none shadow-none">
+            <a href="https://wa.me/34600295895" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+              <span>Hablar con un asesor</span>
+              <div className="relative flex items-center justify-center">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-brand-yellow)] opacity-75 animate-ping-slow"></span>
+                <img src={whatsappLogo} alt="WhatsApp" className="relative h-8 w-8 rounded-full" />
+              </div>
+            </a>
           </Button>
         </div>
         <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
@@ -157,70 +190,52 @@ function Navbar() {
           )}
         </button>
       </div>
-      {isOpen && (
-        <div className="md:hidden p-4 bg-[#0F1B2D] border-b border-white/5 space-y-4">
-          <a
-            href="#features"
-            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-            onClick={() => setIsOpen(false)}
-          >
-            Beneficios
-          </a>
-          <a
-            href="#how-it-works"
-            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-            onClick={() => setIsOpen(false)}
-          >
-            Cómo funciona
-          </a>
-          <a
-            href="#comparison"
-            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-            onClick={() => setIsOpen(false)}
-          >
-            Comparativa
-          </a>
-          <a
-            href="#testimonials"
-            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-            onClick={() => setIsOpen(false)}
-          >
-            Opiniones
-          </a>
-          <a
-            href="#about-us"
-            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-            onClick={() => setIsOpen(false)}
-          >
-            Sobre nosotros
-          </a>
-          <a
-            href="#meet-volt"
-            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-            onClick={() => setIsOpen(false)}
-          >
-            Conoce a Volt
-          </a>
-          <a
-            href="#faq"
-            className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-            onClick={() => setIsOpen(false)}
-          >
-            Preguntas
-          </a>
-          <Button className="w-full bg-[var(--color-brand-yellow)] text-white font-bold uppercase border-2 border-white ">
-            Subir Factura
-          </Button>
-        </div>
-      )}
-    </nav>
+      {
+        isOpen && (
+          <div className="md:hidden p-4 bg-[#0F1B2D] border-b border-white/5 space-y-4">
+            {[
+              { name: "Beneficios", href: "#features" },
+              { name: "Cómo funciona", href: "#how-it-works" },
+              { name: "Comparativa", href: "#comparison" },
+              { name: "Opiniones", href: "#testimonials" },
+              { name: "Sobre nosotros", href: "#about-us" },
+              { name: "Conoce a Volt", href: "#meet-volt" },
+              { name: "Preguntas", href: "#faq" },
+            ].map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)] border-b border-white/10 pb-3"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
+            <Button asChild className="w-full bg-transparent hover:bg-transparent text-white font-bold uppercase text-xs tracking-wide whitespace-nowrap transition-all transform hover:scale-105 p-0 border-none shadow-none justify-center">
+              <a href="https://wa.me/34600295895" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
+                <span>Hablar con un asesor</span>
+                <div className="relative flex items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-brand-yellow)] opacity-75 animate-ping-slow"></span>
+                  <img src={whatsappLogo} alt="WhatsApp" className="relative h-8 w-8 rounded-full" />
+                </div>
+              </a>
+            </Button>
+            <Button asChild className="w-full bg-[var(--color-brand-yellow)] text-white font-bold uppercase border-2 border-white ">
+              <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+                Subir Factura
+              </a>
+            </Button>
+          </div>
+        )
+      }
+    </nav >
   );
 }
 
 function Hero() {
   //  const [, setLocation] = useLocation();
   return (
-    <section className="relative overflow-hidden bg-[#0C1A2B] min-h-[85vh] flex items-center text-white">
+    <section className="relative overflow-hidden bg-[#0C1A2B] min-h-[75vh] flex items-center text-white">
       <div className="absolute top-24 right-0 w-full lg:w-[55%] h-[calc(100%-6rem)] z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A2B] via-[#0C1A2B]/90 to-transparent lg:via-[#0C1A2B]/40 z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A2B] via-transparent to-transparent z-10 lg:hidden"></div>
@@ -364,11 +379,13 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2 items-center sm:items-end">
             <div className="relative transition-transform duration-300 hover:-translate-y-2">
               <Button
+                asChild
                 size="lg"
-                // onClick={() => setLocation("/subir-factura")} // Añade esta línea
                 className="bg-[var(--color-brand-yellow)] [text-shadow:1px_1px_2px_black] hover:bg-yellow-400 text-white font-bold text-lg h-14 px-8 rounded-xl shadow-lg shadow-yellow-500/20 transition-all duration-300 relative z-10"
               >
-                Comparar tarifas ahora
+                <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+                  Comparar tarifas ahora
+                </a>
               </Button>
               {/* Imagen de Volt recostado */}
               <img
@@ -452,10 +469,10 @@ function Features() {
       description: "En pocos minutos sabes cuánto puedes ahorrar cada mes.",
     },
   ];
-  return (
+    return (
     <section
       id="features"
-      className="py-20 md:py-32 bg-[#0F1B2D] border-t border-white/5 relative scroll-mt-28 overflow-hidden"
+      className="py-10 md:py-32 bg-[#0F1B2D] border-t border-white/5 relative scroll-mt-28 overflow-hidden"
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <svg
@@ -489,7 +506,9 @@ function Features() {
             siempre con transparencia y sin complicaciones.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        {/* Vista Escritorio (Grid) - Oculto en móviles */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -511,11 +530,47 @@ function Features() {
             </motion.div>
           ))}
         </div>
+
+        {/* Vista Móvil (Carrusel) - Solo visible en móviles */}
+        <div className="md:hidden px-8">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent>
+              {features.map((feature, index) => (
+                <CarouselItem key={index} className="pl-4">
+                  <div className="flex flex-col items-center text-center rounded-2xl p-6 bg-[#102033] border border-white/5 h-full">
+                    <div className="mb-6 p-4 rounded-full bg-white/5 border border-white/5">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-blue-100 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="-left-9 bg-[#0F1B2D] border-white/10 text-white hover:bg-white/10" />
+            <CarouselNext className="-right-9 bg-[#0F1B2D] border-white/10 text-white hover:bg-white/10" />
+          </Carousel>
+        </div>
+
       </div>
     </section>
   );
 }
-
 function HowItWorks() {
   const steps = [
     {
@@ -542,7 +597,7 @@ function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-20 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28"
+      className="py-10 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -611,14 +666,14 @@ function HowItWorks() {
 
 function Comparison() {
   return (
-    <section id="comparison" className="py-20 md:py-32 bg-[#0F1B2D] border-t border-white/5 relative scroll-mt-28 overflow-hidden">
+    <section id="comparison" className="py-10 md:py-10 bg-[#0F1B2D] border-t border-white/5 relative scroll-mt-28 overflow-hidden">
       <GoldenArcBackground position="top-right" />
       <GoldenArcBackground position="bottom-left" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           {/* Contenido de Imagen (Ahora a la Izquierda) */}
-          <div className="lg:w-5/12 relative flex justify-center lg:justify-end">
+          <div className="w-6/12 lg:w-auto relative flex justify-center lg:justify-end">
             {/* Elementos decorativos de fondo */}
             <div className="absolute inset-0 bg-gradient-to-tr to-transparent rounded-full blur-3xl transform scale-90"></div>
 
@@ -784,7 +839,9 @@ function Testimonials() {
             nuestras recomendaciones.
           </p>
         </div>
-        <div className="flex flex-col gap-8">
+
+        {/* VISTA ESCRITORIO (Original) */}
+        <div className="hidden md:flex flex-col gap-8">
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.slice(0, 3).map((t, i) => (
               <motion.div
@@ -864,6 +921,60 @@ function Testimonials() {
             ))}
           </div>
         </div>
+
+        {/* VISTA MÓVIL (Carrusel) */}
+        <div className="md:hidden px-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((t, i) => (
+                <CarouselItem key={i} className="pl-4">
+                  <div className="flex flex-col p-8 rounded-[20px] bg-[#102033] border border-white/5 h-full">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/10 shrink-0">
+                        <img
+                          src={t.image}
+                          alt={t.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="font-bold text-white">{t.name}</div>
+                        <div className="text-sm text-[var(--color-brand-yellow)] font-medium">
+                          Ahorró {t.amount}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, starIndex) => (
+                        <Star
+                          key={starIndex}
+                          className="w-4 h-4 fill-[var(--color-brand-yellow)] text-[var(--color-brand-yellow)]"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-[#C6CFDA] text-sm leading-relaxed italic">
+                      "{t.text}"
+                    </p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="-left-9 bg-[#0F1B2D] border-white/10 text-white hover:bg-white/10" />
+            <CarouselNext className="-right-9 bg-[#0F1B2D] border-white/10 text-white hover:bg-white/10" />
+          </Carousel>
+        </div>
+
       </div>
     </section>
   );
@@ -937,11 +1048,12 @@ function AboutUs() {
                 </p>
               </div>
             </div>
-            <div>
+                        <div>
               <h3 className="text-xl font-bold text-white mb-4">
                 Nuestros valores
               </h3>
-              <div className="grid sm:grid-cols-3 gap-4">
+              {/* CAMBIO: grid-cols-3 para que sean 3 columnas en móvil */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-4">
                 {[
                   {
                     title: "Transparencia",
@@ -961,13 +1073,16 @@ function AboutUs() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex flex-col gap-2 p-4 rounded-lg bg-[#102033] border border-white/5"
+                    // CAMBIO: Padding reducido en móvil (p-2)
+                    className="flex flex-col gap-2 p-2 sm:p-4 rounded-lg bg-[#102033] border border-white/5"
                   >
-                    <div className="flex items-center gap-2 text-[var(--color-brand-yellow)] font-bold">
-                      <item.icon className="w-5 h-5" />
-                      {item.title}
+                    <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-2 text-[var(--color-brand-yellow)] font-bold">
+                      <item.icon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                      {/* CAMBIO: Texto título más pequeño en móvil */}
+                      <span className="text-xs xl:text-base leading-tight">{item.title}</span>
                     </div>
-                    <p className="text-[#C6CFDA] text-xs leading-snug">
+                    {/* CAMBIO: Texto descripción más pequeño en móvil (text-[10px]) */}
+                    <p className="text-[#C6CFDA] text-[10px] sm:text-xs leading-snug">
                       {item.desc}
                     </p>
                   </div>
@@ -1021,16 +1136,16 @@ function MeetVolt() {
   ];
 
   return (
-    <section id="meet-volt" className="py-20 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28">
+    <section id="meet-volt" className="pb-10 sm:py-10 bg-[var(--color-brand-blue)] border-t border-white/5 relative z-10 scroll-mt-28">
       <GoldenArcBackground position="top-right" />
       <GoldenArcBackground position="bottom-left" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-20 w-auto mx-auto">
           {/* IMAGEN: Izquierda (lg:order-1) */}
-          <div className="w-full lg:w-5/12 flex justify-center relative lg:mb-0 order-1 lg:order-1">
+          <div className="w-5/12  lg:w-[80%] flex justify-center relative lg:mb-0 order-1 lg:order-1">
             <div className="relative scale-100 lg:scale-110 w-full max-w-sm lg:max-w-md mx-auto">
               {/* Círculo de fondo con sombra blanca sutil */}
-              <div className="absolute inset-0 m-auto w-[300px] h-[300px] lg:w-[380px] lg:h-[380px] bg-[#002782] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 z-0">
+              <div className="absolute inset-0 m-auto w-[200px] h-[200px] lg:w-[380px] lg:h-[380px] bg-[#002782] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 z-0">
                 {/* Arco Blanco (Superior Derecho) */}
                 <div className="absolute -top-[2px] -right-[2px] w-full h-full rounded-full border-t-4 border-r-4 border-white opacity-90 transform rotate-12 pointer-events-none"></div>
                 {/* Arco Amarillo (Inferior Izquierdo) */}
@@ -1142,7 +1257,7 @@ function FAQ() {
   return (
     <section
       id="faq"
-      className="py-20 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden scroll-mt-28"
+      className="pt-10 sm:py-10 bg-[#0F1B2D] border-t border-white/5 relative overflow-hidden scroll-mt-28"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1197,7 +1312,7 @@ function FAQ() {
             ))}
           </Accordion>
           {/* Columna Derecha: Volt */}
-          <div className="flex justify-center lg:justify-start relative pt-10 mb-20 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-500">
+          <div className="flex justify-center lg:justify-center relative pt-4 mb-0 sm:pt-10 md:mb-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-500">
             <motion.div
               initial={{ scale: 0.9 }}
               whileHover={{ scale: 0.95 }}
@@ -1241,7 +1356,7 @@ function FAQ() {
               <img
                 src={voltFAQ}
                 alt="Volt respondiendo dudas"
-                className="w-full h-auto relative z-10 drop-shadow-2xl"
+                className="w-[80%] xl:w-10/8 h-auto relative z-10 drop-shadow-2xl"
               />
             </motion.div>
           </div>
@@ -1295,10 +1410,13 @@ function CTA() {
           </p>
           <div className="pt-4 pb-8">
             <Button
+              asChild
               size="lg"
               className="bg-[var(--color-brand-yellow)] [text-shadow:1px_1px_2px_black]  text-[#f8f8f8] font-bold text-lg h-16 px-10 rounded-full  transition-all transform hover:scale-105"
             >
-              Comparar tarifas ahora
+              <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+                Comparar tarifas ahora
+              </a>
             </Button>
           </div>
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm font-medium text-gray-300">
