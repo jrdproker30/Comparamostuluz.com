@@ -145,8 +145,10 @@ function Navbar() {
               )}
             </div>
           ))}
-          <Button className="ml-4 bg-[var(--color-brand-yellow)] text-white hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 transition-all uppercase text-xs tracking-wide border-2 [text-shadow:1px_1px_2px_black] border-white whitespace-nowrap transition-all transform hover:scale-105">
-            Subir Factura
+          <Button asChild className="ml-4 bg-[var(--color-brand-yellow)] text-white hover:bg-yellow-400 font-bold shadow-lg shadow-white/20 transition-all uppercase text-xs tracking-wide border-2 [text-shadow:1px_1px_2px_black] border-white whitespace-nowrap transition-all transform hover:scale-105">
+            <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+              Subir Factura
+            </a>
           </Button>
         </div>
         <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
@@ -208,8 +210,10 @@ function Navbar() {
           >
             Preguntas
           </a>
-          <Button className="w-full bg-[var(--color-brand-yellow)] text-white font-bold uppercase border-2 border-white ">
-            Subir Factura
+          <Button asChild className="w-full bg-[var(--color-brand-yellow)] text-white font-bold uppercase border-2 border-white ">
+            <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+              Subir Factura
+            </a>
           </Button>
         </div>
       )}
@@ -364,11 +368,13 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2 items-center sm:items-end">
             <div className="relative transition-transform duration-300 hover:-translate-y-2">
               <Button
+                asChild
                 size="lg"
-                // onClick={() => setLocation("/subir-factura")} // Añade esta línea
                 className="bg-[var(--color-brand-yellow)] [text-shadow:1px_1px_2px_black] hover:bg-yellow-400 text-white font-bold text-lg h-14 px-8 rounded-xl shadow-lg shadow-yellow-500/20 transition-all duration-300 relative z-10"
               >
-                Comparar tarifas ahora
+                <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+                  Comparar tarifas ahora
+                </a>
               </Button>
               {/* Imagen de Volt recostado */}
               <img
@@ -1295,10 +1301,13 @@ function CTA() {
           </p>
           <div className="pt-4 pb-8">
             <Button
+              asChild
               size="lg"
               className="bg-[var(--color-brand-yellow)] [text-shadow:1px_1px_2px_black]  text-[#f8f8f8] font-bold text-lg h-16 px-10 rounded-full  transition-all transform hover:scale-105"
             >
-              Comparar tarifas ahora
+              <a href="https://campaign.comparamostuluz.es" target="_blank" rel="noopener noreferrer">
+                Comparar tarifas ahora
+              </a>
             </Button>
           </div>
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm font-medium text-gray-300">
