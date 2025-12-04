@@ -185,59 +185,31 @@ function Navbar() {
       {
         isOpen && (
           <div className="md:hidden p-4 bg-[#0F1B2D] border-b border-white/5 space-y-4">
-            <a
-              href="#features"
-              className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Beneficios
-            </a>
-            <a
-              href="#how-it-works"
-              className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Cómo funciona
-            </a>
-            <a
-              href="#comparison"
-              className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Comparativa
-            </a>
-            <a
-              href="#testimonials"
-              className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Opiniones
-            </a>
-            <a
-              href="#about-us"
-              className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Sobre nosotros
-            </a>
-            <a
-              href="#meet-volt"
-              className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Conoce a Volt
-            </a>
-            <a
-              href="#faq"
-              className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)]"
-              onClick={() => setIsOpen(false)}
-            >
-              Preguntas
-            </a>
-            <Button asChild className="w-full bg-transparent border-2 border-[var(--color-brand-yellow)] text-[var(--color-brand-yellow)] hover:bg-[var(--color-brand-yellow)] hover:text-[#0F1B2D] font-bold uppercase">
-              <a href="https://wa.me/34600295895" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+            {[
+              { name: "Beneficios", href: "#features" },
+              { name: "Cómo funciona", href: "#how-it-works" },
+              { name: "Comparativa", href: "#comparison" },
+              { name: "Opiniones", href: "#testimonials" },
+              { name: "Sobre nosotros", href: "#about-us" },
+              { name: "Conoce a Volt", href: "#meet-volt" },
+              { name: "Preguntas", href: "#faq" },
+            ].map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="block text-sm font-bold uppercase text-[#C6CFDA] hover:text-[var(--color-brand-yellow)] border-b border-white/10 pb-3"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
+            <Button asChild className="w-full bg-transparent hover:bg-transparent text-white font-bold uppercase text-xs tracking-wide whitespace-nowrap transition-all transform hover:scale-105 p-0 border-none shadow-none justify-center">
+              <a href="https://wa.me/34600295895" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
                 <span>Hablar con un asesor</span>
-                <WhatsAppIcon className="w-5 h-5 animate-pulse" />
+                <div className="relative flex items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-brand-yellow)] opacity-75 animate-ping-slow"></span>
+                  <img src={whatsappLogo} alt="WhatsApp" className="relative h-8 w-8 rounded-full" />
+                </div>
               </a>
             </Button>
             <Button asChild className="w-full bg-[var(--color-brand-yellow)] text-white font-bold uppercase border-2 border-white ">
