@@ -673,7 +673,7 @@ function Comparison() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           {/* Contenido de Imagen (Ahora a la Izquierda) */}
-          <div className="w-6/12 lg:w-auto relative flex justify-center lg:justify-end">
+          <div className="w-6/8 lg:w-auto relative flex justify-center lg:justify-end">
             {/* Elementos decorativos de fondo */}
             <div className="absolute inset-0 bg-gradient-to-tr to-transparent rounded-full blur-3xl transform scale-90"></div>
 
